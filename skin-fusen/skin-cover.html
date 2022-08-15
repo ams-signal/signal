@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=[[CHARCODE]]"> <!-- ここに文字コードが入ります。 -->
+	<!-- ▼ここに、状況に応じたタイトル、主タイトル、副タイトルが並んで入ります。 -->
+	<title>[[SITUATION:TITLE]] [[FREE:TITLE:MAIN]] [[FREE:TITLE:SUB]]</title>
+	<meta name="viewport" content="initial-scale=1">
+	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]"><!-- ←ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<link type="text/css" rel="stylesheet" href="tegalog-fusen.css?v360">
+	<!-- ▼ここに、状況に応じたOGP＋Twitter Cardの記述が入ります。(出力する設定なら) ※不要なら削除する方が動作は速くなります。 -->
+	[[OGP]]
+</head>
+<body class="[[SITUATION:CLASS]]"><!-- ←ここに現在の表示状況を示すサイン群が入ります。(状況に応じた装飾に使えます。) -->
+
+	<!-- =================================================================================================== -->
+	<!-- お手軽マイクロブログCGI「てがろぐ」付箋型スキン for Ver 3.6.0以降 ： ご自由に改変してご使用下さい。 -->
+	<!-- =================================================================================================== -->
+	<!-- このファイルのほか、内側スキン(skin-onelog.html)とスタイルシート(tegalog-fusen.css)を併せて使います。 -->
+	<!-- スキン内の挿入キーワードの書き方は、配布サイト https://www.nishishi.com/cgi/tegalog/ 内の https://www.nishishi.com/cgi/tegalog/custom/#howtocustomizeskin 等をご参照下さい。 -->
+
+	<!-- ■FusenSkin■ -->
+
+	<!-- ――――――――――― -->
+	<!-- ▼メイン(ログ掲載)領域 -->
+	<!-- ――――――――――― -->
+	<div class="mainarea">
+
+		<!-- ▼ここに状況に応じた見出しが挿入されます。(表示条件が限定されていない場面では何も挿入されません。) ※これを削除すると動作状況が分かりにくくなってしまいますのでご注意下さい。 -->
+		<div class="headmsg">[[SITUATION:HTML]]</div>
+
+		<div class="onefusen">
+			<div class="fusentop">
+				<!-- ▼ここに主タイトルが挿入されます。 -->
+				<b>[[FREE:TITLE:MAIN]]</b>
+				<!-- ▼ここに副タイトルが挿入されます。 -->
+				<small class="subtitle">[[FREE:TITLE:SUB]]</small>
+			</div>
+			<!-- ▼ここに投稿フォームが挿入されます。(※非ログイン時に非表示にするかどうかは設定で選べます。) -->
+			[[QUICKPOST]]
+			<p class="control-links">
+				<!-- ▼ここに管理画面へのURLが挿入されます。 -->
+				<a href="[[ADMIN:URL]]">管理画面へ</a>
+			</p>
+			<p class="headguide">
+				<!-- ▼ここに一行概要文が挿入されます。 -->
+				[[FREE:DESCRIPTION]]
+			</p>
+		</div>
+
+		<!-- ▼ここに投稿内容が挿入されます。(投稿1つ1つの内容は「内側スキン」ファイル側に記載します。) -->
+		[[TEGALOG]]
+
+	</div>
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページナビゲーション領域 -->
+	<!-- ――――――――――――― -->
+	<div class="pagenavi">
+		<p class="pagelinks">
+			<!-- ▼ここに前後のページへ移動するリンクが挿入されます。(※前後のページがある場合のみ) -->
+			[[NAVI:PREVNEXT]]
+		</p>
+		<p class="pagenums">
+			<!-- ▼ここにページ番号の一覧リンクが挿入されます。(※2ページ以上データがある場合のみ) -->
+			[[NAVI:PAGELIST]]
+		</p>
+		<p class="pagehome">
+			<!-- ▼ここに初期状態ページへ戻るリンクが挿入されます。(※表示データが限定されている場合のみ) -->
+			[[NAVI:TOPPAGE]]
+		</p>
+	</div>
+
+	<!-- ――――― -->
+	<!-- ▼サブ領域 -->
+	<!-- ――――― -->
+	<div class="subarea">
+
+		<div class="freespacearea onefusen">
+			<p class="fusentop">■[[FREESPTITLE]]</p><!-- ←ここにフリースペース用のタイトルが挿入されます。 -->
+			<div class="freecontents">
+				<!-- ▼ここにフリースペースが挿入されます。(※区切り文字を使って、別々の内容を表示する複数個のフリースペースを作ることもできます。詳しくは公式説明書 https://www.nishishi.com/cgi/tegalog/#specification-freespace をご参照下さい。) -->
+				[[FREESPACE]]
+			</div>
+			<p class="freespaceedit">
+				<!-- ▼フリースペースを編集する画面へのリンク -->
+				<a href="[[FREESPACEEDIT:URL]]">編集</a>
+			</p>
+		</div>
+
+		<div class="searcharea onefusen">
+			<p class="fusentop">■全文検索：</p>
+
+			<!-- ‥‥‥‥‥‥‥‥ -->
+			<!-- ▼シンプル検索窓 -->
+			<!-- ‥‥‥‥‥‥‥‥ -->
+			<div id="simplesearch">
+				<!-- ▼ここに検索窓が挿入されます。 -->
+				[[SEARCHBOX]]
+
+				<!-- ▼切替リンク(JavaScript) -->
+				<p class="siwtchsearchbox">
+					<a href="#" onclick="document.getElementById('complexsearch').style.display='block'; document.getElementById('simplesearch').style.display='none'; return false;">
+						複合検索窓に切り替える
+					</a>
+				</p>
+			</div>
+
+			<!-- ‥‥‥‥‥‥ -->
+			<!-- ▼複合検索窓 -->
+			<!-- ‥‥‥‥‥‥ -->
+			<div id="complexsearch">
+				<!-- ▼ここに複合検索フォームが挿入されます。 -->
+				[[SEARCHBOX:COMPLEX:UDHCO]]	<!-- 掲載要素と順序(取捨選択順序自由)： U=投稿者、D=投稿年月、H=ハッシュタグ、C=カテゴリ、O=出力順序 -->
+			</div>
+		</div>
+
+
+		<div class="categoryarea onefusen">
+			<p class="fusentop">■カテゴリ：</p>
+			<div class="categoryTree">
+				<!-- ▼ここにカテゴリリストがツリー形式で挿入されます。 -->
+				[[CATEGORY:TREE]]
+			</div>
+		</div>
+
+		<div class="hashtaglistarea onefusen">
+			<p class="fusentop">■ハッシュタグ：</p>
+			<!-- ▼ここにハッシュタグリストが挿入されます。 -->
+			[[HASHTAGLIST]]
+		</div>
+
+		<div class="datelistarea onefusen">
+			<p class="fusentop">■日付一覧：</p>
+			<!-- ▼日付別ログページへのリンクが挿入されます。 -->
+			[[DATEBOX:LIST]]
+		</div>
+
+		<div class="calendararea onefusen">
+			<p class="fusentop">■カレンダー：</p>
+			<!-- ▼ここにカレンダーが挿入されます。 -->
+			[[CALENDAR]]
+
+			<div class="calendarlinks">
+				<!-- ▼ここに前後の月へ移動するリンクが挿入されます。 -->
+				<a href="[[MOVEMONTH:-1:URL]]">&laquo; 前の月</a> / <a href="[[MOVEMONTH:1:URL]]">次の月 &raquo;</a>
+			</div>
+		</div>
+
+		<div class="datelistarea onefusen">
+			<p class="fusentop">■日付検索：</p>
+			<!-- ▼日付別ログページへのプルダウンメニューが挿入されます。 -->
+			[[DATEBOX:PULL]]
+		</div>
+
+		<div class="latestpostarea onefusen">
+			<p class="fusentop">■最近の投稿：</p>
+			<!-- ▼ここに新着投稿の抜粋リストが挿入されます。 -->
+			[[LATESTLIST]]
+		</div>
+
+		<div class="subbox onefusen">
+			<p class="fusentop">■情報：</p>
+			<div class="subbody">
+				<p>▼現在の表示条件での投稿総数：<br>[[INFO:TARGETPOSTS]]件</p> <!-- ここに現在の表示条件での投稿総数(標準状態なら全投稿件数)が数値で入ります。 -->
+				<p>▼最終更新日時：<br>[[INFO:LASTUPDATE:Y年G月N日(b) h:m:s]]</p> <!-- ここに最終更新日時が入ります。表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+			</div>
+		</div>
+
+		<div class="subbox onefusen">
+			<p class="fusentop">■リンク：</p>
+			<p class="subbody">
+				<a href="[[HOME:URL]]">てがろぐTOPへ戻る</a><br>
+			</p>
+			<ul>
+				<li><a href="[[GALLERY:URL]]">ギャラリーモードで表示</a></li> <!-- ここにギャラリーページへのURLが相対パスで入ります。 -->
+				<li><a href="[[SITEMAP:URL]]">サイトマップモードで表示</a></li> <!-- ここにサイトマップページへのURLが相対パスで入ります。 -->
+				<li><a href="[[RANDOM:URL]]">ランダムに1件を表示</a></li> <!-- ここに投稿1つをランダムに表示するURLが入ります。 -->
+				<li><a href="[[REVERSE:URL]]">今の表示を[[REVERSE:NAME]]で見る</a></li> <!-- ここに今の表示を逆順にするURLと、今の表示を逆順にした場合の並び順(昇順/降順)の名称が入ります。 -->
+			</ul>
+			<p class="subbody">
+				<a href="[[RSS:URL]]">RSS</a> /
+				<a href="[[NEWPOST:URL]]">新規投稿</a> /
+				<a href="[[ADMIN:URL]]">管理画面</a>
+			</p>
+		</div>
+
+	</div>
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最下部(フッタ)領域 -->
+	<!-- ――――――――――――― -->
+	<footer>
+		<p class="backlink">
+			[[FREE:HOMELINK]]<!-- ここにウェブサイトのHOMEへ戻るリンクが挿入されます。 -->
+		</p>
+		<p class="poweredby">[[VERSION]].</p><!-- ここにPoweredby表記が挿入されます。削除したり見えにくくしたりせずにお使い下さい。(移動や装飾はご自由にどうぞ) -->
+	</footer>
+
+	<!-- ■FusenSkin■ -->
+
+	<!-- ――――――――――――― -->
+	<!-- ▼遅延読み込みスクリプト群 -->
+	<!-- ――――――――――――― -->
+	<!-- ▼ここに（Lightboxが必要な状況でのみ）jQuery＋Lightboxスクリプトが読み込まれます。※JavaScriptとCSSがCDN経由で読み込まれます。※jQueryだけが不要なら「:JQ」を削除して下さい。 -->
+	<!-- ※Lightbox自体が不要ならこの行自体を削除して下さい。画像を表示しないならLightboxは確実に不要です。※表示される投稿文中に属性「data-lighbox」が1つも登場しない場面では何も挿入されません。) -->
+	[[JS:LIGHTBOX:JQ]]
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<!-- ▼1投稿ごとのボックス(黒板内側スキン) -->
+<div class="onelogbox" id="pos[[LOOPCOUNT]]">
+	<span class="comment">[[COMMENT]]</span>
+	<div class="metabox">
+		<span class="length">([[LENGTH]]文字)</span>
+		<span class="postnum"><a href="[[PARMAURL]]">No.[[POSTID]]</a></span>
+		<span class="categories">[[CATEGORYLINKS]]</span> <!-- ←所属カテゴリ群(リンク) ※前後に見える枠「《Category:」～「》」の部分はCSS側に記述してあります。 -->
+		<span class="separator">at</span>
+		<span class="postdate">[[DATE:Y/M/D(b) h:m:s]]</span> <!-- ← 投稿日時：表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+		<span class="separator">by</span>
+		<span class="iconarea"><a href="[[USERURL]]" class="[[USERID]]">[[USERICON]]</a></span>
+		<span class="username"><a href="[[USERURL]]" class="[[USERID]]">[[USERNAME]]</a></span>
+		<span class="editlink"><a href="[[EDITURL]]" title="No.[[POSTID]]を再編集します。">編</a></span>
+	</div>
+</div>

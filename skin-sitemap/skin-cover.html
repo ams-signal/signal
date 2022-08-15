@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=[[CHARCODE]]"> <!-- ←ここ(CHARCODE)に文字コードが入ります。 -->
+	<!-- ▼ここに、状況に応じたタイトル、主タイトル、副タイトルが並んで入ります。(※表示内容は、管理画面の「設定」内の「フリースペース」ページで自由に設定できます。) -->
+	<title>[[SITUATION:TITLE]] [[FREE:TITLE:MAIN]] [[FREE:TITLE:SUB]]</title>
+	<meta name="viewport" content="initial-scale=1">
+	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]"><!-- ←ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<link type="text/css" rel="stylesheet" href="tegalog-sitemap.css?v360">
+	<!-- ▼ここに、状況に応じたOGP＋Twitter Cardの記述が入ります。(出力する設定なら) ※不要なら削除する方が動作は速くなります。 -->
+	[[OGP]]
+</head>
+<body class="[[SITUATION:CLASS]]"><!-- ←ここに現在の表示状況を示すサイン群が入ります。(状況に応じた装飾に使えます。) -->
+
+	<!-- ================================================================================================================= -->
+	<!-- お手軽マイクロブログCGI「てがろぐ」サイトマップモード用スキン for Ver 3.6.0以降： ご自由に改変してご使用下さい。  -->
+	<!-- ================================================================================================================= -->
+	<!-- このファイルのほか、内側スキン(skin-onelog.html)とスタイルシート(tegalog-sitemap.css)を併せて使います。 -->
+	<!-- スキン内の挿入キーワードの書き方は、配布サイト https://www.nishishi.com/cgi/tegalog/ 内の https://www.nishishi.com/cgi/tegalog/custom/#howtocustomizeskin 等をご参照下さい。 -->
+
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最上部(ヘッダ)領域 -->
+	<!-- ――――――――――――― -->
+	<header>
+		<div class="headtitle">
+			<h1 class="maintitle">
+				<!-- ▼ここにHOMEへ戻るリンクが挿入されます。 -->
+				<a href="[[HOME:URL]]">
+					<!-- ▼ここに主タイトルが挿入されます。 -->
+					[[FREE:TITLE:MAIN]]
+					<!-- ▼ここに副タイトルが挿入されます。 -->
+					<small class="subtitle">[[FREE:TITLE:SUB]]</small>
+				</a>
+			</h1>
+			<p class="mainguide">
+				<!-- ▼ここに一行概要文が挿入されます。 -->
+				[[FREE:DESCRIPTION]]
+			</p>
+		</div>
+		<div class="headcontrol">
+			<div class="searcharea">
+				<!-- ▼ここに検索窓が挿入されます。 -->
+				[[SEARCHBOX]]
+			</div>
+		</div>
+	</header>
+
+	<!-- ■SitemappageSkin■ -->
+
+	<!-- ―――― -->
+	<!-- ▼大外枠 -->
+	<!-- ―――― -->
+	<div class="contents">
+
+		<!-- ====================== -->
+		<!-- ▼メイン(ログ掲載)領域 -->
+		<!-- ====================== -->
+		<div class="mainarea">
+
+			<!-- ▼ここに状況に応じた見出しが挿入されます。(表示条件が限定されていない場面では何も挿入されません。) ※これを削除すると動作状況が分かりにくくなってしまいますのでご注意下さい。どこかに小さくでも表示しておくことをお勧め致します。 -->
+			[[SITUATION:HTML]]
+
+			<div class="sitemapcover">
+				<!-- ▼ここに投稿内容が挿入されます。(投稿1つ1つのフォーマットは「内側スキン」ファイル側に記載します。) ※これを消してしまうとCGIが動作しません。 -->
+				[[TEGALOG]]
+			</div>
+
+			<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+			<!-- ▼ページナビゲーション領域 -->
+			<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+			<div class="pagenavi">
+				<p class="pagelinks">
+					<!-- ▼ここに前後のページへ移動するリンクが挿入されます。(※前後のページがある場合のみ／※1投稿の単独表示時には前後の投稿へ移動するリンクが挿入されますが、設定で挿入しないようにもできます。) -->
+					[[NAVI:PREVNEXT]]
+				</p>
+				<p class="pagenums">
+					<!-- ▼ここにページ番号の一覧リンクが挿入されます。(※2ページ以上ある状況でのみ) -->
+					[[NAVI:PAGELIST]]
+				</p>
+				<p class="pagehome">
+					<!-- ▼ここに初期状態ページへ戻るリンクが挿入されます。(※日付限定、ユーザ限定、ハッシュタグ限定など、「初期状態以外の状態」で表示されている場合のみ) -->
+					[[NAVI:TOPPAGE]]
+				</p>
+			</div><!-- /.pagenavi -->
+
+		</div><!-- /.mainarea -->
+
+		<!-- ========== -->
+		<!-- ▼サブ領域 -->
+		<!-- ========== -->
+		<div class="subarea">
+
+			<!-- ‥‥‥‥‥‥‥‥ -->
+			<!-- ▼カレンダー区画 -->
+			<!-- ‥‥‥‥‥‥‥‥ -->
+			<div class="calendararea">
+				<!-- ▼ここにカレンダーが挿入されます。(2ヶ月前、1ヶ月前、当月の計3ヶ月分) -->
+				[[CALENDAR:-2]]
+				[[CALENDAR:-1]]
+				[[CALENDAR]]
+			</div>
+
+			<!-- ‥‥‥‥‥‥‥‥‥‥ -->
+			<!-- ▼フリースペース区画 -->
+			<!-- ‥‥‥‥‥‥‥‥‥‥ -->
+ 			<div class="freespacearea">
+				<p class="cornertitle">■[[FREESPTITLE]]</p><!-- ←ここにフリースペース用のタイトルが挿入されます。 -->
+				<div class="freespacebody">
+					<!-- ▼ここにフリースペース本文が挿入されます。(※区切り文字を使えば、別々の内容を表示する複数個のフリースペースを作ることもできます。詳しくは公式説明書 https://www.nishishi.com/cgi/tegalog/#specification-freespace をご参照下さい。) -->
+					[[FREESPACE]]
+				</div>
+				<p class="freespaceedit">
+					<a href="[[FREESPACEEDIT:URL]]">編集</a> <!-- フリースペース編集用リンク -->
+				</p>
+			</div>
+
+		</div><!-- /.subarea -->
+
+	</div><!-- /.contents -->
+
+	<!-- ―――――――――――― -->
+	<!-- ▼入力フォームの表示領域 -->
+	<!-- ―――――――――――― -->
+	<div class="postarea">
+		<!-- ▼ここに投稿フォーム(QUICKPOST)が挿入されます。不要なら削除して下さい。(※CGIの設定で、非ログイン時にだけ見えなくすることもできます。標準設定ではログインの有無に関わらず常に表示されます。) -->
+		[[QUICKPOST]]
+	</div>
+
+	<!-- ■SitemappageSkin■ -->
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最下部(フッタ)領域 -->
+	<!-- ――――――――――――― -->
+	<footer>
+		<p class="control-links">
+			<a href="[[HOME:URL]]">[[FREE:TITLE:MAIN]]TOP</a><!-- ここ(HOME:URL)にCGIトップページへのURLが入ります。 --> /
+			<a href="[[NEWPOST:URL]]">新規投稿</a><!-- ここ(NEWPOST:URL)に新規投稿画面へのURLが入ります。 --> /
+			<a href="[[ADMIN:URL]]">管理画面</a><!-- ここ(ADMIN:URL)に管理画面へのURLが入ります。 -->
+		</p>
+		<p class="backlink">[[FREE:HOMELINK]]</p><!-- ここにウェブサイトのHOMEへ戻るリンクが挿入されます。(戻り先は、管理画面の「フリースペース」で設定できます。 -->
+
+		<p class="poweredby">[[VERSION]].</p><!-- ここにPoweredby表記が挿入されます。この記述は必須です。削除したり見えにくくしたりせずにお使い下さい。(移動や装飾はご自由にどうぞ) -->
+	</footer>
+
+	<!-- ――――――――――――― -->
+	<!-- ▼遅延読み込みスクリプト群 -->
+	<!-- ――――――――――――― -->
+	<!-- ▼ここに（Lightboxが必要な状況でのみ）jQuery＋Lightboxスクリプトが読み込まれます。※JavaScriptとCSSがCDN経由で読み込まれます。※jQueryだけが不要なら「:JQ」を削除して下さい。 -->
+	<!-- ※Lightbox自体が不要ならこの行自体を削除して下さい。画像を表示しないならLightboxは確実に不要です。※表示される投稿文中に、Lightbox用の属性が1つも登場しない場面では何も挿入されません。) -->
+	[[JS:LIGHTBOX:JQ]]
+
+</body>
+</html>

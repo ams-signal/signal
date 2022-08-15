@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=[[CHARCODE]]"> <!-- ここに文字コードが入ります。 -->
+	<!-- ▼ここに、状況に応じたタイトル、主タイトル、副タイトルが並んで入ります。 -->
+	<title>[[SITUATION:TITLE]] [[FREE:TITLE:MAIN]] [[FREE:TITLE:SUB]]</title>
+	<meta name="viewport" content="initial-scale=1">
+	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]"><!-- ←ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<link type="text/css" rel="stylesheet" href="tegalog-chat.css?v360">
+</head>
+<body class="[[SITUATION:CLASS]]"><!-- ←ここに現在の表示状況を示すサイン群が入ります。(状況に応じた装飾に使えます。) -->
+
+	<!-- ===================================================================================================== -->
+	<!-- お手軽マイクロブログCGI「てがろぐ」チャットスキン for Ver 3.6.0以降 ： ご自由に改変してご使用下さい。 -->
+	<!-- ===================================================================================================== -->
+	<!-- このファイルのほか、内側スキン(skin-onelog.html)とスタイルシート(tegalog-chat.css)を併せて使います。 -->
+	<!-- スキン内の挿入キーワードの書き方は、配布サイト https://www.nishishi.com/cgi/tegalog/ 内の https://www.nishishi.com/cgi/tegalog/custom/#howtocustomizeskin 等をご参照下さい。 -->
+	<!-- ※このスキンでは、短時間にたくさん投稿されることを前提にしているため、カレンダーや日付一覧などのサブ情報群は一切表示せず、OGP＋Twitter Cardなども出力しない仕様で作成しています。それらの出力をお望みの場合は、他のスキンを参考にして下さい。 -->
+
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最上部(ヘッダ)領域 -->
+	<!-- ――――――――――――― -->
+	<header>
+		<div class="headtitle">
+			<h1 class="maintitle">
+				<!-- ▼ここにHOMEへ戻るリンクが挿入されます。 -->
+				<a href="[[HOME:URL]]">
+					<!-- ▼ここに主タイトルが挿入されます。 -->
+					[[FREE:TITLE:MAIN]]
+					<!-- ▼ここに副タイトルが挿入されます。 -->
+					<small class="subtitle">[[FREE:TITLE:SUB]]</small>
+				</a>
+			</h1>
+			<p class="mainguide">
+				<!-- ▼ここに一行概要文が挿入されます。 -->
+				[[FREE:DESCRIPTION]]
+			</p>
+		</div>
+		<div class="headcontrol">
+			<p class="control-links">
+				<a href="[[ADMIN:URL]]">管理用</a> <!-- ここに管理画面へのURLが入ります。 -->
+			</p>
+		</div>
+	</header>
+
+	<!-- ―――――――――――――――――――― -->
+	<!-- ▼入力フォームとフリースペースの表示領域 -->
+	<!-- ―――――――――――――――――――― -->
+	<div class="postandfree">
+
+		<!-- ======================== -->
+		<!-- ▼フリースペース表示領域 -->
+		<!-- ======================== -->
+		<div class="freespacearea column">
+			<p class="cornertitle">
+				<!-- ▼ここにフリースペース用のタイトルが挿入されます。 -->
+				■[[FREESPTITLE]]
+				<!-- ▼フリースペース編集用リンク -->
+				<a href="[[FREESPACEEDIT:URL]]" class="freespaceedit">編集</a>
+			</p>
+			<div class="freespacebody">
+				<!-- ▼ここにフリースペースが挿入されます。(※区切り文字を使って、別々の内容を表示する複数個のフリースペースを作ることもできます。詳しくは公式説明書 https://www.nishishi.com/cgi/tegalog/#specification-freespace をご参照下さい。) -->
+				[[FREESPACE]]
+			</div>
+		</div>
+
+		<!-- ======================== -->
+		<!-- ▼入力フォームの表示領域 -->
+		<!-- ======================== -->
+		<div class="postarea column">
+			<!-- ▼ここに投稿フォーム(QUICKPOST)が挿入されます。(※CGIの設定で、非ログイン時には非表示にすることもできます。デフォルトでは常に表示されます。) -->
+			[[QUICKPOST]]
+		</div>
+
+	</div>
+
+	<!-- ―――― -->
+	<!-- ▼大外枠 -->
+	<!-- ―――― -->
+	<div class="contents">
+
+		<!-- ====================== -->
+		<!-- ▼メイン(ログ掲載)領域 -->
+		<!-- ====================== -->
+		<div class="mainarea">
+
+			<!-- ▼ここに状況に応じた見出しが挿入されます。(表示条件が限定されていない場面では何も挿入されません。) -->
+			[[SITUATION:HTML]]
+			<!-- ▼ここに投稿内容が挿入されます。(投稿1つ1つの内容は「内側スキン」ファイル側に記載します。) -->
+			[[TEGALOG]]
+
+			<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+			<!-- ▼ページナビゲーション領域 -->
+			<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+			<div class="pagenavi">
+				<p class="pagelinks">
+					<!-- ▼ここに前後のページへ移動するリンクが挿入されます。(※前後のページがある場合のみ) -->
+					[[NAVI:PREVNEXT]]
+				</p>
+				<p class="pagehome">
+					<!-- ▼ここに初期状態ページへ戻るリンクが挿入されます。(※表示データが限定されている場合のみ) -->
+					[[NAVI:TOPPAGE]]
+				</p>
+				<div class="seachbox">
+					全文検索:
+					<!-- ▼ここに検索窓が挿入されます。 -->
+					[[SEARCHBOX]]
+				</div>
+			</div>
+
+		</div>
+
+	</div><!-- /.contents -->
+
+	<!-- ■ChatSkin■ -->
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最下部(フッタ)領域 -->
+	<!-- ――――――――――――― -->
+	<footer>
+		<p class="control-links">
+			<a href="[[HOME:URL]]">てがろぐTOP</a><!-- ここにCGIトップページへのURLが入ります。 --> /
+			<a href="[[NEWPOST:URL]]">新規投稿</a><!-- ここに新規投稿画面へのURLが入ります。 --> /
+			<a href="[[ADMIN:URL]]">管理画面</a><!-- ここに管理画面へのURLが入ります。 -->
+		</p>
+		<p class="backlink">
+			[[FREE:HOMELINK]]<!-- ここにウェブサイトのHOMEへ戻るリンクが挿入されます。 -->
+		</p>
+
+		<p class="poweredby">[[VERSION]].</p><!-- ここにPoweredby表記が挿入されます。削除したり見えにくくしたりせずにお使い下さい。(移動や装飾はご自由にどうぞ) -->
+	</footer>
+
+	<!-- ▼ここに（Lightboxが必要な状況でのみ）jQuery＋Lightboxスクリプトが読み込まれます。(※JavaScriptとCSSがCDN経由で読み込まれます。※jQueryが不要なら「:JQ」を削除して下さい。Lightbox自体が不要ならこの行自体を削除して下さい。画像を表示しないならLightboxは確実に不要です。※表示される投稿文中に属性「data-lighbox」が1つも登場しない場面では何も挿入されません。) -->
+	[[JS:LIGHTBOX:JQ]]
+
+</body>
+</html>

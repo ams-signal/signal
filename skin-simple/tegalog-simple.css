@@ -1,0 +1,1128 @@
+@charset "utf-8";
+
+/* ……………………………………………………………………………………………………………… */
+/* てがろぐ -Fumy Otegaru Memo Logger- シンプル日記スキン用スタイルシート for Ver 3.6.0 */
+/* ……………………………………………………………………………………………………………… */
+/* ※装飾面のカスタマイズ方法については、配布サイト内にある「カスタマイズ方法」ページ https://www.nishishi.com/cgi/tegalog/custom/ の『装飾のカスタマイズ方法』区画にある解説や記述例もご参照下さい。 */
+
+/* Table of Contents：
+   -------------------
+	■全体共通装飾
+		▼リンクの装飾
+		▼URLが書かれた場合の装飾
+		▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：文字
+		▼自由装飾用の装飾の例
+		▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：画像
+		▼埋め込み画像
+		▼埋め込み動画
+
+	■ページ最上部(ヘッダ)領域
+		▼検索ボックス
+		▼タイトル区画
+
+	■入力フォームの表示領域
+		▼本文入力区画
+		▼投稿コントロール部分(ボタンや字数カウンタなど)
+		▼投稿ボタン
+		▼文字装飾ボタン群
+		▼カテゴリ選択チェックボックス群
+
+	■メイン(ログ掲載)領域
+		▼表示対象の限定時などの「限定条件」表示行
+		▼日付境界バー
+
+	■投稿ボックス(一発言)ごとの表示
+		▼ヘッダ
+			▽先頭矢印
+			▽投稿日時
+			▽ボタンリンク
+			▽カテゴリ名
+			▽New!サイン部分
+		▼投稿本文
+			▽本文内に含まれるハッシュタグリンク
+
+	■一発言だけが表示される際に追加表示されるユーティリティリンク群の装飾
+
+	■ページナビゲーション領域
+		▼ページ前後移動リンク群ボックス全体
+		▼ページ番号リンク群ボックス全体
+		▼限定解除リンク(＝HOMEに戻るリンク)
+
+	■フリースペース領域
+
+	■サブ領域
+		▼ハッシュタグリスト区画
+		▼日付別リスト区画
+		▼カテゴリツリー区画
+			▼カテゴリツリー内の各要素（アイコン・カテゴリ名・該当件数・概要等）	new!
+		▼新着投稿リスト区画
+		▼カレンダー区画
+		▼汎用サブ区画
+
+	■ページ最下部(フッタ)領域
+*/
+
+/* ============== */
+/* ■全体共通装飾 */
+/* ============== */
+body {
+	font-family: "メイリオ",Meiryo,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+	background-color: #efe;
+}
+
+	/* -------------- */
+	/* ▼リンクの装飾 */
+	/* -------------- */
+	a:link { color: #087; }		/* 未訪問リンク */
+	a:visited { color: #080; }	/* 既訪問リンク */
+	a:hover { color: #0a0; }	/* マウスが載ったとき */
+
+	/* ------------------------- */
+	/* ▼URLが書かれた場合の装飾 */
+	/* ------------------------- */
+	.url {
+		word-wrap: break-word;		/* 自動リンクのはみ出しを防ぐ */
+		overflow-wrap: break-word;
+	}
+
+	/* ---------------------------------------------------- */
+	/* ▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：文字 */
+	/* ---------------------------------------------------- */
+	/* B:太字(Bold) */
+	.decorationB {
+		font-weight: bold;		/* 太字 */
+	}
+	/* D:削除(Delete) */
+	.decorationD {
+		color: #888;
+		text-decoration-line: line-through;
+		text-decoration-color: #0a8;	/* 線の色 */
+	}
+	/* E:強調(Emphasis) */
+	.decorationE {
+		font-style: normal;
+		font-weight: bold;
+		color: #080;
+	}
+	/* I:斜体(Italic) */
+	.decorationI {
+		font-style: italic;		/* 斜体 */
+	}
+	/* Q:引用(Quote) */
+	.decorationQ {
+		border-left: 5px double #5d5;
+		margin: 1em 0.3em 1em 1em;
+		padding: 0.75em 0.5em;
+		font-style: italic;
+		font-size: 0.95em;
+		display: block;					/* ※Ver 2.2.0以降必須の記述 */
+	}
+	.decorationQ::before,
+	.decorationQ::after {
+		content: '';			/* 標準で付加されてしまう引用符を無効にする */
+	}
+	.decorationQ + br {
+		display: none;	/* 引用直後の改行を無効化する */
+	}
+	/* S:小文字(Small) */
+	.decorationS {
+		font-size: 0.8em;
+	}
+	/* T:極小文字(Tiny) */
+	.decorationT {
+		font-size: 0.6em;
+	}
+	/* U:下線(Underline) */
+	.decorationU {
+		text-decoration-line: underline;	/* 線位置 */
+		text-decoration-style: double;		/* 線種類 */
+		text-decoration-color: yellowgreen;	/* 線配色 */
+	}
+
+	/* ---------------------- */
+	/* ▼自由装飾用の装飾の例 */	/* 自由装飾は [F:myclass:対象文字] の記法で <span class="deco-myclass">対象文字</span> のようにマークアップされる機能です。あらかじめclassを用意しておくことで自由な装飾を個数制限なく使い分けられます。 */
+	/* ---------------------- */	/* 投稿者の自由な記述によって意図せずページが崩れてしまうのを防ぐために、適用されるclass名の先頭には必ず deco- が付加されます。 */
+	.deco-scream {
+		font-size: 1.67em;	/* 文字サイズ(1.67倍) */
+	}
+
+	.deco-code {
+		display: inline-block;	/* インラインブロック化 */
+		font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;	/* 等幅フォント */
+		background-color: snow;	/* 背景色 */
+		color: black;			/* 文字色 */
+		border: 1px solid #eee;	/* 枠線 */
+		border-radius: 3px;		/* 角丸 */
+		padding: 0px 3px;		/* 内側の余白量 */
+	}
+
+	.deco-separator {
+		display: block;					/* ブロック化 */
+		border-bottom: 1px dotted gray;	/* 下線 */
+	}
+
+	/* ---------------------------------------------------- */
+	/* ▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：画像 */	/* この部分は、文字装飾領域内に含まれた画像を装飾するための記述です。 */
+	/* ---------------------------------------------------- */
+	/* B:太字(Bold)に含まれる画像に対する装飾 */
+	.decorationB img {
+		box-shadow: 5px 5px 5px yellowgreen;		/* 右下に黄緑色の影を付ける */
+	}
+	/* D:削除(Delete)に含まれる画像に対する装飾 */
+	.decorationD img {
+		opacity: 0.5;	/* 半透明にする */
+	}
+	/* E:強調(Emphasis)に含まれる画像に対する装飾 */
+	.decorationE img {
+		outline: 8px ridge rgba(170, 236, 50, 0.6);		/* 浮き上がる黄緑色の枠線を付加 */
+	}
+	/* I:斜体(Italic)に含まれる画像に対する装飾 */
+	.decorationI img {
+		box-shadow: -5px 5px 5px pink;	/* 左下に黄緑色の影を付ける */
+	}
+	/* Q:引用(Quote)に含まれる画像に対する装飾 */
+	.decorationQ img {
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* S:小文字(Small)に含まれる画像に対する装飾 */
+	.decorationS img {
+		border-radius: 15px;			/* 半径15pxで角丸にする */
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* T:極小文字(Tiny)に含まれる画像に対する装飾 */
+	.decorationT img {
+		max-height: 75px;				/* 高さを最大75pxに抑える */
+		width: auto;					/* 横幅は縦横比を維持する */
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* U:下線(Underline)に含まれる画像に対する装飾 */
+	.decorationU img {
+		box-shadow: 5px 5px 5px skyblue;	/* 右下に空色の影を付ける */
+	}
+
+	/* -------------- */
+	/* ▼埋め込み画像 */
+	/* -------------- */
+	.embeddedimage {
+		max-width: 100%;	/* 横方向にはみ出ないようにする */
+		max-height: 240px;	/* 大きくなりすぎないようにする */
+		width: auto;	/* 画像サイズを固定したい場合はここに具体的なpx値を指定するのがお勧め */
+		height: auto;	/* 高さを固定したい場合を除いて、ここは auto のままにするのがお勧め */
+	}
+
+	/* -------------- */
+	/* ▼埋め込み動画 */
+	/* -------------- */
+	@media all and (max-width: 600px) {
+		.embeddedmovie {
+			display: inline-block;
+			max-width: 100%;	/* はみ出ないようにする */
+			width: auto;
+			height: auto;
+		}
+	}
+
+	/* --------------- */
+	/* ▼埋め込みTweet */	/* これはツイートが埋め込まれる処理「前」用の装飾です。実際に埋め込まれるツイートはTwitter側のiframeで装飾されますので、てがろぐ側では指定できません。 */
+	/* --------------- */
+	blockquote.twitter-tweet {
+		background-color: #f8f8f8;
+		border: 1px dashed #ddd;
+		border-radius: 9px;
+		margin: 0.3em 0;
+		padding: 1em;
+		font-size: 0.95em;
+		color: #999;
+		text-shadow: 1px 1px 1px #fff;
+	}
+
+
+/* ========================== */
+/* ■ページ最上部(ヘッダ)領域 */
+/* ========================== */
+
+	/* -------------- */
+	/* ▼検索ボックス */
+	/* -------------- */
+	.searchbox {
+		float: right;		/* 右端に寄せる */
+		text-align: right;	/* 右寄せにする */
+	}
+
+		/* ▽検索対象を限定するチェックボックス */
+		.searchtarget {
+			margin: 0;
+			font-size: 0.85em;
+			line-height: 1.3;
+		}
+
+		/* ………………………… */
+		/* ※狭い画面用の上書き */
+		/* ………………………… */
+		@media all and (max-width: 480px) {
+			.searchbox {
+				float: none;		/* 狭いときは配置を標準に戻す */
+				text-align: left;	/* 左寄せにする */
+			}
+		}
+
+	/* -------------- */
+	/* ▼タイトル区画 */
+	/* -------------- */
+	.pagetitle {
+		margin: 0;
+	}
+		/* ▽タイトルのリンク */
+		.pagetitle a {
+			color: black;
+			text-decoration: none;
+		}
+		.pagetitle a:hover {
+			text-decoration: underline;
+		}
+
+	.pageguide {
+		margin: 0;
+	}
+
+
+/* ======================== */
+/* ■入力フォームの表示領域 */
+/* ======================== */
+.postform {
+	background-color: #cec;
+	padding: 1em;
+}
+.postform p {
+	margin: 0;
+}
+	/* -------------- */
+	/* ▼本文入力区画 */
+	/* -------------- */
+	.line-textarea {
+		/* display: inline-block; */
+	}
+
+		/* ……………… */
+		/* ▼本文入力欄 */
+		/* ……………… */
+		textarea.tegalogpost {
+			font-size: 0.9rem;
+			box-sizing: border-box;
+			width: 30em;
+			max-width: 100%;
+			height: 4.3em;
+			overflow-wrap: break-word;
+			overflow: auto;
+		}
+			/* ▽プレースホルダ(※入力文字数ゼロの際だけ見える薄文字)の装飾 */
+			textarea.tegalogpost:placeholder-shown { color: #777; }			/* 通常時 */
+			textarea.tegalogpost:focus:placeholder-shown { color: #bbb; }	/* カーソルが入ったとき */
+			textarea.tegalogpost:-ms-input-placeholder { color: #aaa; }		/* for IE */
+
+		/* 横幅800px以下の環境の場合 */
+		@media all and (max-width: 800px) {
+			textarea.tegalogpost {
+				font-size: 16px;	/* 文字サイズ */
+			}
+		}
+
+	/* ------------------------------------------------ */
+	/* ▼投稿コントロール部分(ボタンや字数カウンタなど) */
+	/* ------------------------------------------------ */
+	.line-control {
+		margin: 0.25em 0;
+		display: inline-block;
+	}
+
+	/* ------------ */
+	/* ▼投稿ボタン */
+	/* ------------ */
+	.postbutton {
+		font-size: 1rem;
+		font-weight: bold;
+	}
+
+	/* ------------------ */
+	/* ▼文字装飾ボタン群 */
+	/* ------------------ */
+	/* 掲載領域全体 */ .decoBtns { display: inline-block; margin-top: 0.5em; }
+	/* 全ボタン装飾 */ .decoBtns input { min-width: 30px; min-height: 26px; margin:1px; background-color:#ecf9ec; border: 1px solid #aaa; cursor: pointer; border-radius: 3px; font-size: 12px; vertical-align: middle; }
+	/* マウス載る際 */ .decoBtns input:hover { background-color:#e5f1fb; border-color: #0078d7; }
+	/* 太字  :B */ .decoBtnB { font-weight: bold; }
+	/* 取消線:D */ .decoBtnD { text-decoration: line-through; text-decoration-color: red; text-decoration-style: double; }
+	/* 強調  :E */ .decoBtnE { font-weight: bold; color: blue; }
+	/* 斜体  :I */ .decoBtnI { font-style: italic; }
+	/* 引用  :Q */ .decoBtnQ {  }
+	/* 小さめ:S */ .decoBtnS {  }
+	/* 極小  :T */ .decoBtnT { font-size: 11px !important; }
+	/* 下線  :U */ .decoBtnU { text-decoration: underline; text-decoration-color: red; }
+	/* 文字色:C */ .decoBtnC { color: red; }
+	/* 背景色:M */ .decoBtnM { color: blue; }
+
+	/* ………………………… */
+	/* ※狭い画面用の上書き */
+	/* ………………………… */
+	@media all and (max-width: 480px) {
+		.line-textarea {
+			display: block;
+		}
+	}
+
+	/* -------------------------------- */
+	/* ▼カテゴリ選択チェックボックス群 */	/* ★Ver 3.0.0以降で使用 */
+	/* -------------------------------- */
+	.catChecks { font-size:0.9em; padding-top: 0.5em; }
+	.catChecks label { display:inline-block; cursor:pointer; margin:0 0.75em 0 0; }
+	.catChecks label:hover { text-decoration:underline; }
+	.catChecks input { min-width:0; min-height:0; margin-right:0.2em; }
+
+
+/* ====================== */
+/* ■メイン(ログ掲載)領域 */
+/* ====================== */
+.mainarea {
+	margin: 1em 0px;
+	padding: 0;
+	background-color: snow;
+	border: 5px solid #7b7;
+}
+
+	/* ------------------------------------------ */
+	/* ▼表示対象の限定時などの「限定条件」表示行 */
+	/* ------------------------------------------ */
+	.situation {
+		margin: 0px;
+		padding: 1px 0.25em;
+		font-weight: bold;
+		font-size: 1.2em;
+		color: white;
+		background-color: green;
+		border-bottom: 5px solid #7b7;
+	}
+	.situation::before {
+		content: '▼';			/* 先頭記号 */
+	}
+	.situation:empty { display: none; }	/* 限定表示がない場合 */
+
+	/* -------------- */
+	/* ▼日付境界バー */
+	/* -------------- */
+	.dateseparator {
+		border-width: 1px 0px;
+		border-style: dashed;
+		border-color: #cec;
+		color: #8ab77f;
+		background-color: white;
+		padding: 0.5em 0;
+		margin: 1em;
+		font-weight: bold;
+	}
+
+	/* ▼日付境界バーの表示文字列の先頭に付加する記号 */
+	.dateseparator::before {
+		content: '▽';
+	}
+
+	/* ▼日付境界バー内のリンク */
+	.dateseparator a {
+		display: inline-block;
+		font-size: 0.6em;
+		margin: 0 1em;
+		font-weight: normal;
+	}
+
+
+/* ================================ */
+/* ■投稿ボックス(一発言)ごとの表示 */		/* ※この領域は、内側スキンで生成しているHTMLに対する装飾です。 */
+/* ================================ */
+.onelogbox {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 2em 0 3em 0;
+	padding: 0 1em;
+}
+
+	/* -------- */
+	/* ▼ヘッダ */
+	/* -------- */
+	.onehaad {
+		margin: 0;
+	}
+		/* …………… */
+		/* ▽先頭矢印 */
+		/* …………… */
+		.arrow {
+			color: #cec;
+			font-size: 1.2em;
+			vertical-align: middle;
+		}
+
+		/* …………… */
+		/* ▽投稿日時 */
+		/* …………… */
+		.postdate {
+			font-weight: bold;
+		}
+			/* 日付 */
+			.date {
+				font-size: 1.1em;
+				text-shadow: 1px 1px 1px #beb;
+			}
+			/* 時刻 */
+			.time {
+				font-size: 0.85em;
+			}
+
+		/* ……………… */
+		/* ▽カテゴリ名 */
+		/* ……………… */
+		.categories {
+			font-size: 0.8em;				/* 文字サイズ */
+			margin-right: 0.5em;			/* 右側の余白 */
+		}
+			/* ▽カテゴリリンク1つ */
+			.categorylink {
+				display: inline-block;
+			}
+			/* ▽カテゴリ間のセパレータ */
+			.catseparator {
+				display: inline-block;
+				margin: 0 2px;			/* 左右に2pxの余白 */
+				color: gray;			/* 文字色 */
+			}
+
+				/* ▽カテゴリアイコン */
+				.categoryicon img {
+					height: 1.2em;
+					width: auto;
+					vertical-align: text-top;
+					margin: 0 1px;
+				}
+
+		/* ………………… */
+		/* ▽ボタンリンク */
+		/* ………………… */
+		.buttonlink {
+			vertical-align: middle;
+			display: inline-block;
+			text-decoration: none;
+			border: 1px solid skyblue;
+			border-radius: 1em;
+			padding: 0.25em;
+			width: 1em;
+			height: 1em;
+			line-height: 1;
+			text-align: center;
+			background-color: #f0faf0;
+		}
+		.buttonlink:hover {
+			border-color: #08f;
+			background-color: #08f;
+			color: white;
+		}
+
+		/* …………………… */
+		/* ▽New!サイン部分 */
+		/* …………………… */
+		.newsign {
+			display: inline-block;
+			color: #f55;
+			font-size: 80%;
+			margin-right: 0.35em;
+		}
+
+	/* ---------- */
+	/* ▼投稿本文 */
+	/* ---------- */
+	.comment {
+		margin: 0.5em 0 1em 3em;
+		line-height: 1.5;
+	}
+
+		/* ……………………………………………… */
+		/* ▽本文内に含まれるハッシュタグリンク */
+		/* ……………………………………………… */
+		.comment .taglink {
+			display: inline-block;	/* インラインブロック化 */
+			text-decoration: none;	/* 下線を消す */
+			word-break:break-all;	/* 自動リンクのはみ出しを防ぐ */
+		}
+		/* ▼ハッシュタグリンクにマウスが載ったとき */
+		.comment .taglink:hover {
+			text-decoration: underline;		/* 下線を引く */
+		}
+
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		/* ▼続きを読むリンク（ボタン） */		/* ※注：「続きを読む」機能は、JavaScriptが無効な閲覧環境では機能せず、その場合はボタンも表示されません。 */
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		/* ▽ボタン枠の装飾(共通) */
+		.readmorebutton {
+			display: inline-block;	/* インラインブロック化 */
+			padding: 1px 0.5em;		/* 内側の余白 */
+			margin: 0 1px;			/* 外側の余白 */
+			border: 1px solid #bbb;	/* 枠線の装飾 */
+			border-radius: 0.5em;	/* 枠線の角丸 */
+		}
+		/* ▽ボタン表面の装飾(共通) */
+		.readmorebutton:link,
+		.readmorebutton:visited {
+			background-color: #eee;	/* 背景色(グラデーション非対応の環境のみ) */
+			background-image: linear-gradient( 0deg, #ccc, #ddd 55%, white );	/* 背景グラデーション */
+			color: darkgreen;		/* 文字色 */
+			text-decoration: none;	/* リンク装飾を消す */
+		}
+		/* ▽ボタンにマウスが載った際の装飾(共通) */
+		.readmorebutton:hover {
+			background-image: none;		/* グラデーションなし */
+			background-color: #0cb;		/* 背景色 */
+			color: white;				/* 文字色 */
+			text-decoration: underline;	/* 下線を加える */
+		}
+
+		/* ▽開く（続きを読む）ボタン専用の装飾 */
+		.readmorebutton.readmoreopen {
+			font-size: 0.95em;		/* 文字サイズ */
+		}
+
+		/* ▽閉じる（畳む）ボタン専用の装飾 */
+		.readmorebutton.readmoreclose {
+			font-size: 0.75em;		/* 文字サイズ */
+		}
+
+/* ====================================================================== */
+/* ■一発言だけが表示される際に追加表示されるユーティリティリンク群の装飾 */	/* 各投稿の個別ページでのみ表示される囲みナビ用の装飾です。表示項目の取捨選択や詳細な装飾方法は https://www.nishishi.com/cgi/tegalog/custom/#customizecss-utilitylinkbox をご覧下さい。 */
+/* ====================================================================== */
+.utilitylinks {
+	margin: 2em 1em 1em 1em;
+	padding: 0.5em;
+	border: 1px dotted #7a7;
+	border-radius: 1em;
+	background-color: white;
+	font-size: 0.9em;
+}
+.utilitylinks ul {
+	color: darkgreen;
+}
+
+
+/* ========================== */
+/* ■ページナビゲーション領域 */
+/* ========================== */
+.pagenavi {
+	margin: 2.5em 0 0 0;		/* 外側の余白 */
+	padding: 0.5em 0;			/* 内側の余白 */
+	background-color: #cec;	/* 背景色 */
+}
+.pagenavi p {
+	margin: 0.5em 1em;
+}
+
+	/* ------------------------------------ */
+	/* ▼ページ前後移動リンク群ボックス全体 */
+	/* ------------------------------------ */
+	.pagelinks {
+		margin: 0.75em;		/* 外側の余白 */
+	}
+
+	/* ▼ページ移動リンクの文字 */
+	.pagelinks a {
+		font-weight: bold;
+	}
+	.pagelinks a:hover {
+		color: green;
+		text-shadow: 1px 1px 1px lime;
+	}
+
+	/* -------------------------------- */
+	/* ▼ページ番号リンク群ボックス全体 */
+	/* -------------------------------- */
+	.pagenums {
+		margin: 0.75em;		/* 外側の余白 */
+	}
+
+	/* ▼ページ番号リンクの数字 */
+	.pagenums a.pagenumlink {
+		margin: 0px 2px 0px 2px;	/* 外側の余白 */
+		padding: 0.2em 0.5em;		/* 内側の余白 */
+		font-size: 1em;				/* 文字サイズ */
+		font-weight: bold;			/* 太字 */
+	}
+	/* ▽現在のページ番号の装飾 */
+	a.pagenumhere {
+		text-decoration: none;		/* リンク装飾を消す */
+		background-color: green;	/* 背景色 */
+		color: white;				/* 文字色 */
+		border-radius: 1em;			/* 角丸 */
+	}
+	/* ▽ページ番号リンクにマウスが載った際の装飾 */
+	a.pagenumlink:hover {
+		text-decoration: none;		/* リンク装飾を消す */
+		background-color: #aa0000;	/* 背景色 */
+		color: white;				/* 文字色 */
+		border-radius: 0.3em;		/* 角丸 */
+	}
+
+	/* ------------------------------------ */
+	/* ▼限定解除リンク(＝HOMEに戻るリンク) */
+	/* ------------------------------------ */
+	.pagehome {
+		font-weight: bold;
+	}
+
+
+/* ==================== */
+/* ■フリースペース領域 */
+/* ==================== */
+.freespacearea {
+	background-color: #cec;
+	padding: 1em;
+}
+/* ▼見出し */
+.freespacearea .cornertitle {
+	font-weight: bold;
+	margin: 0;
+	color: darkgreen;
+	text-shadow: 1px 1px 1px white;
+}
+
+	/* ▼フリースペースの編集リンク区画 */
+	.freespacebottom {
+		margin: 0;
+		padding: 0;
+		text-align: right;
+	}
+
+		/* ▽フリースペースの編集リンク */
+		.freespaceedit {
+			display: inline-block;
+			border: 1px solid green;
+			border-radius: 1em;
+			padding: 3px 1em;
+			background-color: white;
+			text-decoration: none;
+			font-size: 0.8em;
+		}
+		/* ▽フリースペースの編集リンクにマウスが載ったとき */
+		.freespaceedit:hover {
+			background-color: green;
+			color: white;
+		}
+
+/* ========== */
+/* ■サブ領域 */
+/* ========== */
+.subarea {
+	margin: 1em 0px;
+}
+
+	/* ------------------------ */
+	/* ▼ハッシュタグリスト区画 */
+	/* ------------------------ */
+	.hashtaglistarea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+		max-width: 50%;
+		box-sizing: border-box;
+	}
+	/* ▼見出し */
+	.hashtaglistarea .cornertitle {
+		font-weight: bold;
+		margin: 0;
+		color: #585;
+		text-shadow: 1px 1px 1px white;
+		border-bottom: 1px dashed #5a5;
+	}
+		/* ▽ハッシュタグリスト */
+		.hashtaglist {
+			margin: 0.5em;
+			padding: 0;
+			list-style-type: none;
+		}
+		.hashtaglist li {
+			display: inline-block;
+		}
+		/* ▽ハッシュタグリスト内の該当件数 */
+		.hashtaglist .num {
+			font-size: 0.9em;
+			color: #00a;
+			margin-left: 0.25em;
+		}
+
+	/* ------------------ */
+	/* ▼日付別リスト区画 */
+	/* ------------------ */
+	.datelistarea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+		max-width: 48%;
+		box-sizing: border-box;
+	}
+	/* ▼見出し */
+	.datelistarea .cornertitle {
+		font-weight: bold;
+		margin: 0;
+		color: #969;
+		text-shadow: 1px 1px 1px white;
+		border-bottom: 1px dashed #5a5;
+	}
+		/* ▽日付リスト(年単位) */
+		.datelimitlist {
+			margin: 0.5em 0;
+			padding: 0 0 0 20px;
+		}
+		/* ▽日付リスト(月単位) */
+		.datelimitsublist {
+			margin: 0;
+			padding: 0 0 0 10px;
+			list-style-type: none;
+			font-size: 0.95em;
+		}
+			/* ▽年表記が単独で存在する場合に、月表示を横に並べる */
+			.datelimitlist .datelimitsublist .datelimit-month {
+				display: inline-block;
+				margin-right: 0.9em;
+			}
+			/* ▽年表記が単独で存在する場合に、月リンク内に含まれる年表記を非表示にする(詳細解説→ https://www.nishishi.com/cgi/tegalog/custom/#customizecss-datelist ) */
+			.datelimitlist .datelimitsublist .year {
+				display: none;
+			}
+		/* ▽日付リスト内の該当件数 */
+		.datelimitlist .num {
+			font-size: 0.85em;
+			color: #66a;
+			margin-left: 0.3em;
+		}
+		/* ▽日付リンク項目 */
+		.datelistlink:hover {
+			color: white;
+			background-color: green;
+			border-radius: 3px;
+		}
+
+		/* ▽日付プルダウンメニュー区画 */
+		.datelimitbox {
+			margin: 0.5em;
+		}
+
+		/* ▽昇順/降順選択ラジオボタン区画 */
+		.datelimitboxoptions {
+			display: block;
+			font-size: 0.9em;
+		}
+		.datelimitboxoptions label {
+			display: inline-block;
+			margin-right: 0.5em;
+		}
+		.datelimitboxoptions input {
+		}
+
+	/* -------------------- */
+	/* ▼カテゴリツリー区画 */
+	/* -------------------- */
+	.categoryarea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+	}
+	/* ▼見出し */
+	.categoryarea .cornertitle {
+		margin: 0;							/* 外側の余白量 */
+		font-weight: bold;					/* 太字 */
+		color: #585;						/* 文字色 */
+		text-shadow: 1px 1px 1px white;		/* 文字の影 */
+	}
+	.categoryTree {
+	}
+		/* ▽カテゴリツリー */
+		.categoryTree ul {
+			padding-left: 30px;
+			list-style-type: disc;
+		}
+		/* ▽カテゴリツリー内の該当件数 */
+		.categoryTree .num {
+			display: inline-block;
+			margin-left: 0.4em;
+			font-size: 0.9em;
+			color: #aaa;
+		}
+
+		/* ………………………………………………………………………………………… */
+		/* ▼カテゴリツリー内の各要素（アイコン・カテゴリ名・該当件数・概要等） */
+		/* ………………………………………………………………………………………… */
+		/* ▽カテゴリアイコン */
+		.categoryTree .caticon img {
+			height: 1.2em;				/* アイコンの高さを1.2文字分に制限する */
+			width: auto;				/* アイコンの横幅は自動調整する */
+			vertical-align: text-top;	/* アイコンの上端位置をテキストの上端に合わせる */
+		}
+
+		/* ▽カテゴリ名 */
+		.categoryTree .cattext {
+		}
+
+		/* 間隔調整：カテゴリアイコンとカテゴリ名が並ぶ際には間隔を空ける */
+		.categoryTree .caticon + .cattext,
+		.categoryTree .cattext + .caticon {
+			margin-left: 3px;
+		}
+
+		/* ▽該当件数 */
+		.categoryTree .num {
+			display: inline-block;
+			margin-left: 0.4em;
+			font-size: 0.9em;
+			color: #aaa;
+		}
+
+		/* ▽カテゴリ概要文 */
+		.categoryTree .catdescription {
+			font-size: smaller;
+			color: #555;
+		}
+
+	/* ---------------- */
+	/* ▼全文検索窓区画 */
+	/* ---------------- */
+	.searcharea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+	}
+	/* ▼見出し */
+	.searcharea .cornertitle {
+		margin: 0;							/* 外側の余白量 */
+		font-weight: bold;					/* 太字 */
+		color: #585;						/* 文字色 */
+		text-shadow: 1px 1px 1px white;		/* 文字の影 */
+		border-bottom: 1px dashed #5a5;
+	}
+
+		/* 検索窓 */
+		.searcharea .searchbox {
+			float: none;
+			text-align: left;
+		}
+
+		/* ▽複合検索フォーム */
+		#complexsearch {
+			display: none;	/* 複合検索窓は、最初は非表示にしておく */
+		}
+
+			/* 検索オプションリスト */
+			.searchoptions {
+				font-size: 0.9em;
+				margin: 0.75em 0 1em 0.5em;
+				padding: 0 0 0 0.5em;
+			}
+
+			/* 項目名 */
+			.solabel {
+				display: inline-block;
+				min-width: 5em;
+			}
+
+			/* セレクトボックス */
+			.searchoptions select {
+				max-width: 175px;
+				overflow: hidden;
+			}
+
+	/* -------------------- */
+	/* ▼新着投稿リスト区画 */
+	/* -------------------- */
+	.latestpostarea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+	}
+	/* ▼見出し */
+	.latestpostarea .cornertitle {
+		margin: 0;							/* 外側の余白量 */
+		font-weight: bold;					/* 太字 */
+		color: #585;						/* 文字色 */
+		text-shadow: 1px 1px 1px white;		/* 文字の影 */
+		border-bottom: 1px dashed #5a5;
+	}
+		/* ▽新着投稿グリスト */
+		.latestpostlist {
+			margin: 0;			/* 外側の余白量 */
+			padding: 0.3em 0.5em 0.3em 1.2em;		/* 内側の余白量 */
+			line-height: 1.25;		/* 行の高さ */
+		}
+			/* 各項目 */
+			.latestpostlist li {
+				margin: 0.75em 0;
+			}
+			/* タイトルリンク以外の項目 */
+			.latestpostlist span {
+				display: inline-block;
+				font-size: 0.8em;
+			}
+				.latestpostlist .postdate { color: gray; }	/* 投稿日付 */
+				.latestpostlist .posttime { color: gray; }	/* 投稿時刻 */
+				.latestpostlist .username { color: #558855; }	/* 投稿者名 */
+				.latestpostlist .userid   { color: #555588; }	/* 投稿者ID */
+				.latestpostlist .postid   { color: gray; }		/* 投稿番号 */
+				.latestpostlist .length   { color: gray; }	/* 本文文字数 */
+
+	/* ---------------- */
+	/* ▼カレンダー区画 */
+	/* ---------------- */
+	.calendararea {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+	}
+	/* ▼見出し */
+	.calendararea .cornertitle {
+		margin: 0;							/* 外側の余白量 */
+		font-weight: bold;					/* 太字 */
+		color: #585;						/* 文字色 */
+		text-shadow: 1px 1px 1px white;		/* 文字の影 */
+		border-bottom: 1px dashed #5a5;
+	}
+
+		/* ▽カレンダーカバー */
+		.calendarplace {
+			margin: 0.5em 0;		/* 外側の余白量 */
+			padding: 0;		/* 内側の余白量 */
+			line-height: 1.5;		/* 行の高さ */
+			overflow: auto;			/* はみ出る場合の処理 */
+		}
+
+		/* ▽カレンダーテーブル */
+		.calendar {
+			border-collapse: collapse;	/* 枠を結合 */
+			border: 1px solid #8cd98c;	/* テーブル外側の枠線 */
+		}
+		.calendar th,
+		.calendar td {
+			border: 1px solid #ace3ac;	/* テーブル内側の枠線 */
+			padding: 2px;				/* セル内側の余白 */
+			text-align: center;			/* 中央寄せ */
+			font-size: 0.9em;			/* 文字サイズ */
+			line-height: 1;				/* 行の高さ */
+		}
+			/* 年月キャプション */
+			.calendar caption {
+				color: darkgreen;		/* 文字色 */
+			}
+
+			/* 曜日行 */
+			.daysofweek th {
+				background-color: #d9ffd9;
+				font-weight: normal;
+				padding: 6px 0;
+				font-size: 0.8em;
+				line-height: 1;
+			}
+
+			/* 日付数値の装飾（リンクになる場合も、ならない場合も共通） */
+			.calendar a,
+			.calendar .nolink {
+				display: inline-block;	/* インラインブロック化 */
+				border-radius: 50%;		/* 角丸 */
+				padding: 0.4em;			/* 内側の余白 */
+				width: 1.2em;			/* 横幅 */
+				height: 1.1em;			/* 高さ */
+				background-color: transparent;
+			}
+
+			/* 日付数値のリンク（※リンクになる場合だけの装飾） */
+			.calendar td a {
+				text-decoration: none;		/* 下線を消す */
+				background-color: #ace3ac;	/* 背景色 */
+				color: black;				/* 文字色 */
+			}
+			/* 日付数値のリンクにマウスが載った際 */
+			.calendar td a:hover {
+				background-color: green;	/* 背景色 */
+				color: white;				/* 文字色 */
+			}
+
+			/* 今日の枠（カレンダー内での「今日」のセルだけの装飾） */
+			.today {
+				background-color: #ffffcc;	/* 背景色 */
+			}
+
+	/* -------------- */
+	/* ▼汎用サブ区画 */
+	/* -------------- */
+	.multisubbox {
+		margin: 0px 0px 0.5em 0px;
+		padding: 1em;
+		background-color: white;
+		border: 1px solid #bdb;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 7em;
+	}
+		/* ▽リスト装飾 */
+		.multisubbox ul {
+			margin: 0.5em;
+			padding: 0.5em;
+		}
+		.multisubbox .sublist {
+			margin: 0;
+			font-size: 0.9em;
+		}
+
+
+/* ========================== */
+/* ■ページ最下部(フッタ)領域 */
+/* ========================== */
+footer {
+	margin: 1em 0 0 0;
+}
+footer p {
+	margin: 0;
+	padding: 5px 0;
+}
+
+	/* ▼リンク群区画 */
+	.backlink {
+		border-width: 10px 0px;
+		border-style: solid;
+		border-color: #cec;
+		padding: 1em;
+	}
+
+	/* Powered-by表記のデザイン */
+	.poweredby { margin: 0; font-size: 0.8em; text-align: right; }
+
+
+/* End of file */

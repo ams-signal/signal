@@ -1,0 +1,28 @@
+
+<!-- ▼1投稿ごとのボックス(ジャーナル内側スキン) -->
+<div class="onelogbox" id="pos[[LOOPCOUNT]]">
+	<p class="onelogsupplement">
+		<span class="categories">[[CATEGORYLINKS]]</span> <!-- ←所属カテゴリ群(リンク) -->
+		<span class="length">〔[[LENGTH]]文字〕</span> <!-- ←本文の文字数 -->
+		<span class="editlink"><a href="[[EDITURL]]" title="No.[[POSTID]]を編集します。">編集</a></span> <!-- ←編集ページへのリンク -->
+	</p>
+	<p class="oneloginfo">
+		<span class="postdate">
+			<!-- ▼投稿日時：表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+			<span class="date">[[DATE:Y/M/D (w)]]</span> <!-- ←投稿日(記述仕様は上記参照) -->
+			<span class="time">[[DATE:h:m:s]]</span> <!-- ←投稿時刻(記述仕様は上記参照) -->
+			<span class="newsign">[[NEW]]</span> <!-- ←新着を示す表示 -->
+		</span>
+		<span class="postedby">
+			<span class="postid"><a href="[[PARMAURL]]">No.[[POSTID]]</a></span><!-- ←単独ページへのリンクと投稿番号 -->
+			by
+			<a href="[[USERURL]]" class="usericonlink"> <!-- ←ユーザ限定ページへのリンク -->
+				<span class="iconarea">[[USERICON]]</span> <!-- ←ユーザアイコン -->
+				<span class="username">[[USERNAME]]</span> <!-- ←ユーザ名 -->
+			</a>
+		</span>
+	</p>
+	<div class="comment"><!-- 本文 -->
+		[[COMMENT]]
+	</div>
+</div>

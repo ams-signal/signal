@@ -1,0 +1,820 @@
+@charset "utf-8";
+
+/* ………………………………………………………………………………………………………… */
+/* てがろぐ -Fumy Otegaru Memo Logger- チャットスキン用スタイルシート for Ver 3.6.0 */
+/* ………………………………………………………………………………………………………… */
+/* ※装飾面のカスタマイズ方法については、配布サイト内にある「カスタマイズ方法」ページ https://www.nishishi.com/cgi/tegalog/custom/ の『装飾のカスタマイズ方法』区画にある解説や記述例もご参照下さい。 */
+
+/* Table of Contents：
+   -------------------
+	■全体共通装飾
+		▼リンクの装飾
+		▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：文字
+		▼自由装飾用の装飾の例									new!
+		▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：画像
+		▼埋め込み画像
+		▼埋め込み動画
+	■ページ最上部(ヘッダ)領域
+		▼タイトル区画
+		▼管理・投稿ボタン区画
+		▼カテゴリ選択チェックボックス群
+		▼ヘッダ領域：画面の横幅が800px以上の場合
+		▼ヘッダ領域：画面の横幅が480px以下の場合
+	■入力フォームの表示領域
+		▼本文入力欄
+		▼投稿ボタン
+		▼フリースペース区画
+	■入力フォームとフリースペースの段組構成（画面の幅が800px以上ある広い場合限定）
+		▼投稿欄＆フリースペースの段組
+		▼段の装飾
+	■メイン(ログ掲載)領域
+		▼表示対象の限定時などの「限定条件」表示行
+		▼日付境界バー
+	■投稿ボックス（一発言）ごとの表示
+		▼ユーザアイコン表示
+		▼ユーザ名(投稿者名)表示
+		▼セパレータ記号
+		▼投稿本文
+		▼投稿日時表示
+		▼編集ボタン
+	■一発言だけが表示される際に追加表示されるユーティリティリンク群の装飾
+	■ページナビゲーション領域
+		▼ページ前後移動リンク群ボックス全体
+		▼限定解除リンク(＝HOMEに戻るリンク)
+		▼全文検索窓
+	■ページ最下部(フッタ)領域
+*/
+
+
+/* ============== */
+/* ■全体共通装飾 */
+/* ============== */
+body {
+	font-family: "メイリオ",Meiryo,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+	/* -------------- */
+	/* ▼リンクの装飾 */
+	/* -------------- */
+	a:link { color: blue; }		/* 未訪問リンク */
+	a:visited { color: #309; }	/* 既訪問リンク */
+	a:hover { color: #0a0; }	/* マウスが載ったとき */
+
+	.url {
+		word-wrap: break-word;		/* 自動リンクのはみ出しを防ぐ */
+		overflow-wrap: break-word;
+	}
+	/* ---------------------------------------------------- */
+	/* ▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：文字 */
+	/* ---------------------------------------------------- */
+	/* B:太字(Bold) */
+	.decorationB {
+		font-weight: bold;		/* 太字 */
+	}
+	/* D:削除(Delete) */
+	.decorationD {
+		color: #888;
+		text-decoration-line: line-through;
+		text-decoration-color: red;	/* 線の色 */
+	}
+	/* E:強調(Emphasis) */
+	.decorationE {
+		font-style: normal;
+		font-weight: bold;
+		color: #080;
+		text-decoration: underline;
+		text-decoration-style: wavy;
+	}
+	/* I:斜体(Italic) */
+	.decorationI {
+		font-style: italic;		/* 斜体 */
+	}
+	/* Q:引用(Quote) */
+	.decorationQ {
+		border-left: 5px double #5c5;
+		margin: 1em 0.3em 1em 1em;
+		padding: 0.75em 0.5em;
+		background-color: #efe;
+		font-size: 0.95em;
+		display: block;					/* ※Ver 2.2.0以降必須の記述 */
+	}
+	.decorationQ::before,
+	.decorationQ::after {
+		content: '';			/* 標準で付加されてしまう引用符を無効にする */
+	}
+	.decorationQ br { display: block !important; }	/* 引用の中の改行は有効に */
+	.decorationQ + br {
+		display: none;	/* 引用直後の改行を無効化する */
+	}
+	/* S:小文字(Small) */
+	.decorationS {
+		font-size: 0.8em;
+	}
+	/* T:極小文字(Tiny) */
+	.decorationT {
+		font-size: 0.6em;
+	}
+	/* U:下線(Underline) */
+	.decorationU {
+		text-decoration-line: underline;	/* 線位置 */
+		text-decoration-style: double;		/* 線種類 */
+		text-decoration-color: lime;		/* 線配色 */
+	}
+
+	/* ---------------------- */
+	/* ▼自由装飾用の装飾の例 */	/* 自由装飾は [F:myclass:対象文字] の記法で <span class="deco-myclass">対象文字</span> のようにマークアップされる機能です。あらかじめclassを用意しておくことで自由な装飾を個数制限なく使い分けられます。 */
+	/* ---------------------- */	/* 投稿者の自由な記述によって意図せずページが崩れてしまうのを防ぐために、適用されるclass名の先頭には必ず deco- が付加されます。 */
+	.deco-scream {
+		font-size: 1.67em;	/* 文字サイズ(1.67倍) */
+	}
+
+	.deco-code {
+		display: inline-block;	/* インラインブロック化 */
+		font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;	/* 等幅フォント */
+		background-color: snow;	/* 背景色 */
+		color: black;			/* 文字色 */
+		border: 1px solid #eee;	/* 枠線 */
+		border-radius: 3px;		/* 角丸 */
+		padding: 0px 3px;		/* 内側の余白量 */
+	}
+
+	.deco-separator {
+		display: block;					/* ブロック化 */
+		border-bottom: 1px dotted gray;	/* 下線 */
+	}
+
+	/* ---------------------------------------------------- */
+	/* ▼汎用装飾(てがろぐ専用記法で書かれた場合のみ)：画像 */	/* この部分は、文字装飾領域内に含まれた画像を装飾するための記述です。 */
+	/* ---------------------------------------------------- */
+	/* B:太字(Bold)に含まれる画像に対する装飾 */
+	.decorationB img {
+		box-shadow: 5px 5px 5px yellowgreen;		/* 右下に黄緑色の影を付ける */
+	}
+	/* D:削除(Delete)に含まれる画像に対する装飾 */
+	.decorationD img {
+		opacity: 0.5;	/* 半透明にする */
+	}
+	/* E:強調(Emphasis)に含まれる画像に対する装飾 */
+	.decorationE img {
+		outline: 8px ridge rgba(50, 236, 70, 0.6);		/* 浮き上がる淡緑色の枠線を付加 */
+	}
+	/* I:斜体(Italic)に含まれる画像に対する装飾 */
+	.decorationI img {
+		box-shadow: -5px 5px 5px pink;	/* 左下に黄緑色の影を付ける */
+	}
+	/* Q:引用(Quote)に含まれる画像に対する装飾 */
+	.decorationQ img {
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* S:小文字(Small)に含まれる画像に対する装飾 */
+	.decorationS img {
+		max-height: 75px;				/* 高さを最大75pxに抑える */
+		width: auto;					/* 横幅は縦横比を維持する */
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* T:極小文字(Tiny)に含まれる画像に対する装飾 */
+	.decorationT img {
+		max-height: 50px;				/* 高さを最大50pxに抑える */
+		width: auto;					/* 横幅は縦横比を維持する */
+		vertical-align: middle;			/* 行の上下方向で真ん中に寄せる */
+	}
+	/* U:下線(Underline)に含まれる画像に対する装飾 */
+	.decorationU img {
+		box-shadow: 5px 5px 5px skyblue;	/* 右下に空色の影を付ける */
+	}
+
+	/* -------------- */
+	/* ▼埋め込み画像 */
+	/* -------------- */
+	.embeddedimage {
+		max-width: 100%;	/* 横方向にはみ出ないようにする */
+		max-height: 120px;	/* 大きくなりすぎないようにする */
+		width: auto;	/* 画像サイズを固定したい場合はここに具体的なpx値を指定するのがお勧め */
+		height: auto;	/* 高さを固定したい場合を除いて、ここは auto のままにするのがお勧め */
+		vertical-align: top;
+	}
+
+	/* -------------- */
+	/* ▼埋め込み動画 */
+	/* -------------- */
+	@media all and (max-width: 600px) {
+		.embeddedmovie {
+			display: inline-block;
+			max-width: 100%;	/* はみ出ないようにする */
+			width: auto;
+			height: auto;
+		}
+	}
+
+	/* --------------- */
+	/* ▼埋め込みTweet */	/* これはツイートが埋め込まれる処理「前」用の装飾です。実際に埋め込まれるツイートはTwitter側のiframeで装飾されますので、てがろぐ側では指定できません。 */
+	/* --------------- */
+	blockquote.twitter-tweet {
+		background-color: #f8f8f8;
+		border: 1px dashed #ddd;
+		border-radius: 9px;
+		margin: 0.3em 0;
+		padding: 1em;
+		font-size: 0.95em;
+		color: #999;
+		text-shadow: 1px 1px 1px #fff;
+	}
+
+
+/* ========================== */
+/* ■ページ最上部(ヘッダ)領域 */
+/* ========================== */
+header {
+	display: table;				/* タイトルとボタンで2段組 */
+	background-color: green;	/* 背景色 */
+	width: 100%;				/* 横幅 */
+}
+
+	/* -------------- */
+	/* ▼タイトル区画 */
+	/* -------------- */
+	.headtitle {
+		display: table-cell;	/* タイトルとボタンで2段組 */
+		margin: 0;				/* 外側の余白量 */
+		padding: 0.2em;			/* 内側の余白量 */
+		color: white;			/* 文字色 */
+		line-height: 1;			/* 行の高さ */
+	}
+
+		/* ▽メインタイトル */
+		.maintitle {
+			margin: 0;			/* 外側の余白量 */
+		}
+		/* ▽メインタイトルのリンク */
+		.maintitle a {
+			color: white;
+			text-decoration: none;
+		}
+		/* ▽メインタイトルのリンクにマウスが載ったとき */
+		.maintitle a:hover {
+			color: #ffa;
+			text-decoration: underline;
+		}
+
+		/* ▽サブタイトル */
+		.subtitle {
+			display: inline-block;	/* インラインブロック化 */
+			font-size: 0.55em;		/* 文字サイズ */
+		}
+
+		/* ▽タイトル下部の概要文 */
+		.mainguide {
+			margin: 3px 0 0 0;	/* 外側の余白量 */
+			line-height: 1.2;	/* 行の高さ */
+		}
+
+	/* ---------------------- */
+	/* ▼管理・投稿ボタン区画 */
+	/* ---------------------- */
+	.headcontrol {
+		display: table-cell;	/* タイトルとボタンで2段組 */
+		text-align: right;		/* 右寄せ */
+		vertical-align: middle;	/* 上下の中心寄せ */
+		padding: 0 3px;			/* 内側の余白量 */
+	}
+
+	/* ▼ボタンの包含ボックス */
+	.control-links {
+		margin: 0;				/* 外側の余白量 */
+	}
+
+	/* ▼管理・投稿用リンクボタン */
+	.headcontrol a {
+		display: inline-block;		/* インラインブロック化 */
+		text-align: center;			/* センタリング */
+		border: 2px solid white;	/* 枠線 */
+		border-radius: 0.5em;		/* 枠の角丸 */
+		padding: 0.5em;				/* 内側の余白量 */
+		margin-bottom: 1px;			/* 外側下の余白量 */
+		background-color: skyblue;	/* 背景色 */
+		background-image: linear-gradient( 180deg, skyblue, #8080ff 25%, blue );	/* 背景グラデーション */
+		color: white;				/* 文字色 */
+		text-decoration: none;		/* 下線を消す */
+		white-space: nowrap;		/* 折り返さない */
+	}
+	/* ▼管理・投稿用リンクボタンにマウスが載った際 */
+	.headcontrol a:hover {
+		text-decoration: underline;	/* 下線を引く */
+		background-color: #ffffcc;	/* 背景色 */
+		background-image: linear-gradient( 180deg, #ffffaa, #ffffcc 55%, white );	/* 背景グラデーション */
+		color: blue;				/* 文字色 */
+	}
+
+	/* ▼文字装飾ボタン群 */
+	/* 掲載領域全体 */ .decoBtns { display: inline-block; margin-top: 0.5em; }
+	/* 全ボタン装飾 */ .decoBtns input { min-width: 32px; min-height: 28px; margin:1px; background-color:#eee; border: 1px solid #aaa; cursor: pointer; border-radius: 3px; font-size: 14px; vertical-align: middle; }
+	/* マウス載る際 */ .decoBtns input:hover { background-color:#e5f1fb; border-color: #0078d7; }
+	/* 太字  :B */ .decoBtnB { font-weight: bold; }
+	/* 取消線:D */ .decoBtnD { text-decoration: line-through; text-decoration-color: red; text-decoration-style: double; }
+	/* 強調  :E */ .decoBtnE { font-weight: bold; color: blue; }
+	/* 斜体  :I */ .decoBtnI { font-style: italic; }
+	/* 引用  :Q */ .decoBtnQ {  }
+	/* 小さめ:S */ .decoBtnS {  }
+	/* 極小  :T */ .decoBtnT { font-size: 11px !important; }
+	/* 下線  :U */ .decoBtnU { text-decoration: underline; text-decoration-color: red; }
+	/* 文字色:C */ .decoBtnC { color: red; }
+	/* 背景色:M */ .decoBtnM { color: blue; }
+
+	/* -------------------------------- */
+	/* ▼カテゴリ選択チェックボックス群 */	/* ★Ver 3.0.0以降で使用 */
+	/* -------------------------------- */
+	.catChecks { font-size:0.9em; padding-top: 0.5em; }
+	.catChecks label { display:inline-block; cursor:pointer; margin:0 0.75em 0 0; }
+	.catChecks label:hover { text-decoration:underline; }
+	.catChecks input { min-width:0; min-height:0; margin-right:0.2em; }
+
+	/* ----------------------------------------- */
+	/* ▼ヘッダ領域：画面の横幅が800px以上の場合 */
+	/* ----------------------------------------- */
+	@media all and (min-width: 800px) {
+		/* 投稿・管理ボタン区画 */
+		.headcontrol {
+			white-space: nowrap;	/* ヘッダ領域のボタン部分を横並びに強制する */
+		}
+		/* ▼文字装飾ボタン群 */
+		.decoBtns { margin-top: 0; }
+		/* タイトル区画 */
+		.mainguide {
+			line-height: 1;			/* 行の高さ */
+		}
+	}
+
+	/* ----------------------------------------- */
+	/* ▼ヘッダ領域：画面の横幅が480px以下の場合 */
+	/* ----------------------------------------- */
+	@media all and (max-width: 480px) {
+		/* タイトル区画 */
+		.subtitle {
+			font-size: 0.35em;		/* 文字サイズ */
+			vertical-align: middle;	/* 上下の中心寄せ */
+		}
+		.mainguide {
+			font-size: 0.8em;		/* 文字サイズ */
+			line-height: 1.25;		/* 行の高さ */
+		}
+	}
+
+
+/* ======================== */
+/* ■入力フォームの表示領域 */		/* ※これはQUICKPOST用です。 */
+/* ======================== */
+.postform {
+	background-color: #eee;	/* 背景色 */
+	margin: 1em;			/* 外側の余白量 */
+	padding: 0.5em;			/* 内側の余白量 */
+}
+.postform p {
+	margin: 0;
+}
+	/* ------------ */
+	/* ▼本文入力欄 */
+	/* ------------ */
+	textarea.tegalogpost {
+		border: 2px green solid;	/* 枠線 */
+		border-radius: 0.67em;		/* 枠の角丸 */
+		background-color: white;	/* 背景色 */
+		font-size: 0.9rem;			/* 文字サイズ */
+		padding: 0.5em;				/* 内側の余白量 */
+		margin-bottom: 0.25em;		/* 外側下の余白量 */
+		box-sizing: border-box;		/* サイズ解釈方法 */
+		width: 100%;				/* 横幅 */
+		height: 4.3em;				/* 高さ */
+		overflow-wrap: break-word;	/* 折り返し方法 */
+		overflow: auto;				/* はみ出した場合の処理 */
+	}
+		/* ▽プレースホルダ(※入力文字数がゼロの際にだけ見える薄文字)の装飾 */
+		textarea.tegalogpost:placeholder-shown { color: #777; }			/* 通常時 */
+		textarea.tegalogpost:focus:placeholder-shown { color: #bbb; }	/* カーソルが入ったとき */
+		textarea.tegalogpost:-ms-input-placeholder { color: #aaa; }		/* for IE */
+
+	/* ▼投稿コントロール部分(ボタンや字数カウンタなど) */
+	.line-control {
+		margin: 0.25em 0;	/* 外側の余白量 */
+	}
+
+	/* 横幅800px以下の環境の場合 */
+	@media all and (max-width: 800px) {
+		textarea.tegalogpost {
+			font-size: 16px;	/* 文字サイズ */
+			padding: 0.4em;		/* 内側の余白量 */
+		}
+	}
+
+	/* ------------ */
+	/* ▼投稿ボタン */
+	/* ------------ */
+	.postbutton {
+		display: inline-block;		/* インラインブロック化 */
+		background: green;			/* 背景色 */
+		color: white;				/* 文字色 */
+		font-size: 1rem;			/* 文字サイズ */
+		font-weight: bold;			/* 太字 */
+		text-decoration: none;		/* 下線を消す */
+		padding: 0.25em 0.75em;		/* 内側の余白量 */
+		border: 1px solid green;	/* 枠線 */
+		border-radius: 1em;			/* 枠の角丸 */
+	}
+	/* ▼投稿ボタンにマウスが載ったとき */
+	.postbutton:hover {
+		background-color: #00cc00;	/* 背景色 */
+	}
+
+	/* -------------------- */
+	/* ▼フリースペース区画 */
+	/* -------------------- */
+	.freespacearea {
+		margin: 1em;			/* 外側の余白量 */
+		padding: 0;				/* 内側の余白量 */
+		background-color: #e0f0e0;	/* 背景色 */
+	}
+	/* ▼見出し */
+	.freespacearea .cornertitle {
+		margin: 0;							/* 外側の余白量 */
+		padding: 0 0.25em;					/* 内側の余白量 */
+		font-weight: bold;					/* 太字 */
+		color: #5a5;						/* 文字色 */
+		text-shadow: 1px 1px 1px white; 	/* 文字の影 */
+	}
+
+		/* ▽フリースペースの本文 */
+		.freespacebody {
+			margin: 0;				/* 外側の余白量 */
+			padding: 0.25em 0.5em;	/* 内側の余白量 */
+			line-height: 1.4;		/* 行の高さ */
+			font-size: 0.8em;
+		}
+
+		/* ▽フリースペースの編集リンク */
+		.freespaceedit {
+			margin: 0;
+			font-size: 0.75em;
+			font-weight: normal;
+		}
+
+
+/* =============================================================================== */
+/* ■入力フォームとフリースペースの段組構成（画面の幅が800px以上ある広い場合限定） */		/* ※段組(2カラム構成)にしたくない場合は、この区画を全削除して下さい。 */
+/* =============================================================================== */
+@media all and (min-width: 800px) {
+
+	/* ------------------------------ */
+	/* ▼投稿欄＆フリースペースの段組 */
+	/* ------------------------------ */
+	.postandfree {
+		display: flex;
+		flex-direction: row-reverse;		/* サイドバー(サブ側)を右側にしたい場合はこの値を「row」に、左側にしたい場合は「row-reverse」にして下さい。 */
+		border-collapse: separate;
+		border-spacing: 1em 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	/* ---------- */
+	/* ▼段の装飾 */
+	/* ---------- */
+	.postandfree > .column {
+		width: 50%;
+	}
+	.freespacearea {
+		margin-left: 0;
+	}
+}
+
+
+/* ====================== */
+/* ■メイン(ログ掲載)領域 */
+/* ====================== */
+.mainarea {
+	margin: 1em;	/* 外側の余白量 */
+	padding: 0;		/* 内側の余白量 */
+}
+
+	/* ------------------------------------------ */
+	/* ▼表示対象の限定時などの「限定条件」表示行 */
+	/* ------------------------------------------ */
+	.situation {
+		margin: 0 0 1em 0;	/* 外側の余白量 */
+		font-weight: bold;	/* 太字 */
+		color: green;		/* 文字色 */
+	}
+	.situation::before {
+		content: '★';		/* 先頭に加える記号 */
+	}
+	.situation:empty { display: none; }	/* 限定表示がない場合は存在自体を消す */
+
+	/* -------------- */
+	/* ▼日付境界バー */
+	/* -------------- */
+	.dateseparator {
+		background-color: #0a0;	/* 背景色 */
+		color: white;			/* 文字色 */
+		font-weight: bold;		/* 太字 */
+		padding: 1px 1em;		/* 内側の余白量 */
+	}
+
+	/* ▼日付境界バーの表示文字列の先頭に付加する記号 */
+	.dateseparator::before {
+		content: '▼';
+	}
+
+	/* ▼日付境界バー内のリンク(ボタン) */
+	.dateseparator a {
+		display: inline-block;	/* インラインブロック化 */
+		margin-left: 1.5em;		/* 外側左の余白量 */
+		color: #ffc;			/* 文字色 */
+		font-size: 0.7em;		/* 文字サイズ */
+		font-weight: normal;	/* 太字を解除 */
+		border: 1px solid #ffc;	/* 枠線 */
+		border-radius: 1em;		/* 枠の角丸 */
+		padding: 0px 1em;		/* 内側の余白量 */
+		text-decoration: none;	/* 下線を消す */
+		vertical-align:middle;	/* 上下の中心寄せ */
+	}
+	/* ▼日付境界バー内のリンク(ボタン)にマウスが載ったとき */
+	.dateseparator a:hover {
+		background-color: #cec;	/* 背景色 */
+		color: green;			/* 文字色 */
+	}
+
+
+/* ================================== */
+/* ■投稿ボックス（一発言）ごとの表示 */
+/* ================================== */
+/* ※この領域は、内側スキンで生成しているHTMLに対する装飾です。 */
+.onelogbox {
+	margin: 5px 1em;				/* 外側の余白量 */
+	padding: 5px 0px;				/* 内側の余白量 */
+	border-bottom: 1px #aca dashed;	/* 下端の枠線(※一発言ごとに引く線の装飾)：デフォルトでは灰色の点線 */
+}
+
+	/* -------------------- */
+	/* ▼ユーザアイコン表示 */
+	/* -------------------- */
+	.usericon {
+		vertical-align: middle;		/* 上下方向の中心寄せ */
+		width: 1.25em;
+		height: 1.25em;
+	}
+
+	/* ------------------------ */
+	/* ▼ユーザ名(投稿者名)表示 */
+	/* ------------------------ */
+	.username {
+		display: inline-block;	/* インラインブロック化 */
+		font-size: 0.9em;
+	}
+
+	/* ▽ユーザ名のリンク */
+	.username a {
+		text-decoration: none;		/* 下線を消す */
+		color: darkgreen;			/* 文字色 */
+		letter-spacing: -1px;		/* 文字間隔を詰める(※値がマイナスだと詰まり、プラスだと広がる) */
+	}
+	/* ▽ユーザ名のリンクにマウスが載ったとき */
+	.username a:hover {
+		text-decoration: underline;	/* 下線を引く */
+		color: #0c0;				/* 文字色 */
+	}
+
+	/* ---------------- */
+	/* ▼セパレータ記号 */
+	/* ---------------- */
+	.separator {
+		color: #aaa;		/* 文字色 */
+		font-size: 0.8em;
+	}
+
+	/* ---------- */
+	/* ▼投稿本文 */
+	/* ---------- */
+	.comment {
+		line-height: 1.3;	/* 行の高さ */
+	}
+
+		/* ▼本文内に含まれる改行を無効化したい場合は、このコメントアウトを取り除いて下さい。 */
+		.comment br {
+			/* display: none; */
+		}
+
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		/* ▼本文内に含まれるハッシュタグリンク */
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		.comment .taglink {
+			display: inline-block;	/* インラインブロック化 */
+			margin: 0 3px;			/* 外側の余白量 */
+			text-decoration: none;	/* 下線を消す */
+			word-break:break-all;	/* 自動リンクのはみ出しを防ぐ */
+		}
+		/* ▼ハッシュタグリンクにマウスが載ったとき */
+		.comment .taglink:hover {
+			color: blue;					/* 文字色 */
+			border-color: white;			/* 枠線の色 */
+			text-decoration: underline;		/* 下線を引く */
+		}
+
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		/* ▼続きを読むリンク（ボタン） */		/* ※注：「続きを読む」機能は、JavaScriptが無効な閲覧環境では機能せず、その場合はボタンも表示されません。 */
+		/* ‥‥‥‥‥‥‥‥‥‥‥‥‥‥ */
+		/* ▽ボタン枠の装飾(共通) */
+		.readmorebutton {
+			display: inline-block;	/* インラインブロック化 */
+			padding: 1px 0.5em;		/* 内側の余白 */
+			margin: 0 1px;			/* 外側の余白 */
+			border: 1px solid #bbb;	/* 枠線の装飾 */
+			border-radius: 0.5em;	/* 枠線の角丸 */
+		}
+		/* ▽ボタン表面の装飾(共通) */
+		.readmorebutton:link,
+		.readmorebutton:visited {
+			background-color: #eee;	/* 背景色(グラデーション非対応の環境のみ) */
+			background-image: linear-gradient( 0deg, #ccc, #ddd 55%, white );	/* 背景グラデーション */
+			color: darkblue;		/* 文字色 */
+			text-decoration: none;	/* リンク装飾を消す */
+		}
+		/* ▽ボタンにマウスが載った際の装飾(共通) */
+		.readmorebutton:hover {
+			background-image: none;		/* グラデーションなし */
+			background-color: #00cccc;	/* 背景色 */
+			color: white;				/* 文字色 */
+			text-decoration: underline;	/* 下線を加える */
+		}
+
+		/* ▽開く（続きを読む）ボタン専用の装飾 */
+		.readmorebutton.readmoreopen {
+			font-size: 0.95em;		/* 文字サイズ */
+		}
+
+		/* ▽閉じる（畳む）ボタン専用の装飾 */
+		.readmorebutton.readmoreclose {
+			font-size: 0.75em;		/* 文字サイズ */
+		}
+
+		/* ‥‥‥‥‥‥ */
+		/* ▼カテゴリ名 */
+		/* ‥‥‥‥‥‥ */
+			/* ▽カテゴリアイコン */
+			.categoryicon img {
+				height: 1.2em;
+				width: auto;
+				vertical-align: text-top;
+				margin: 0 1px;
+			}
+
+	/* -------------- */
+	/* ▼投稿日時表示 */
+	/* -------------- */
+	.postdate {
+		font-size: 0.67em;	/* 文字サイズ */
+	}
+
+	/* ▼投稿日時のリンク */
+	.postdate a {
+		display: inline-block;	/* インラインブロック化 */
+		color: white;			/* 文字色 */
+		text-decoration: none;	/* 下線を消す */
+		background-color: #0a0;	/* 背景色 */
+		border-radius: 0.5em;	/* 枠の角丸 */
+		padding: 0 0.5em;		/* 内側の余白量 */
+	}
+	/* ▼投稿日時リンクにマウスが載ったとき */
+	.postdate a:hover {
+		color: white;			/* 文字色 */
+		background-color: #08f;	/* 背景色 */
+	}
+
+	/* ------------ */
+	/* ▼編集ボタン */
+	/* ------------ */
+	.editlink {
+		font-size: 0.67em;	/* 文字サイズ */
+	}
+
+	/* ▼編集ボタンのリンク */
+	.editlink a {
+		display: inline-block;	/* インラインブロック化 */
+		color: #00c;			/* 文字色 */
+		text-decoration: none;	/* 下線を消す */
+		background-color: #dfd;	/* 背景色 */
+		border-radius: 0.5em;	/* 枠の角丸 */
+		padding: 0 0.5em;		/* 内側の余白量 */
+	}
+	/* ▼編集ボタンリンクにマウスが載ったとき */
+	.editlink a:hover {
+		color: white;			/* 文字色 */
+		background-color: #08f;	/* 背景色 */
+	}
+
+
+/* ====================================================================== */
+/* ■一発言だけが表示される際に追加表示されるユーティリティリンク群の装飾 */	/* 各投稿の個別ページでのみ表示される囲みナビ用の装飾です。表示項目の取捨選択や詳細な装飾方法は https://www.nishishi.com/cgi/tegalog/custom/#customizecss-utilitylinkbox をご覧下さい。 */
+/* ====================================================================== */
+.utilitylinks {
+	margin: 2em 1em 1em 1em;	/* 外側の余白量 */
+	padding: 0.5em;				/* 内側の余白量 */
+	border: 1px solid #7a7;		/* 枠線 */
+	border-radius: 1em;			/* 枠の角丸 */
+	background-color: #efd;		/* 背景色 */
+	font-size: 0.9em;			/* 文字サイズ */
+}
+/* ▼ナビのリンクリスト */
+.utilitylinks ul {
+	color: darkgreen;			/* 文字色 */
+}
+
+
+/* ========================== */
+/* ■ページナビゲーション領域 */
+/* ========================== */
+.pagenavi {
+	margin: 2.5em 0px;			/* 外側の余白 */
+	padding: 0.5em 0px;			/* 内側の余白 */
+	text-align: center;			/* 中央寄せ */
+	border-width: 3px 0px;		/* 枠線の太さ */
+	border-style: dotted;		/* 枠線の種類 */
+	border-color: #80a080;		/* 枠線の配色 */
+	background-color: #eeffee;	/* 背景色 */
+	text-align: center;			/* センタリング */
+}
+
+	/* ------------------------------------ */
+	/* ▼ページ前後移動リンク群ボックス全体 */
+	/* ------------------------------------ */
+	.pagelinks {
+		margin: 0.15em;		/* 外側の余白 */
+	}
+
+	/* ▼ページ移動リンクの文字 */
+	.pagelinks a {
+		font-weight: bold;	/* 太字 */
+	}
+
+	/* ------------------------------------ */
+	/* ▼限定解除リンク(＝HOMEに戻るリンク) */
+	/* ------------------------------------ */
+	.pagehome {
+		margin: 0.15em;		/* 外側の余白 */
+		font-weight: bold;	/* 太字 */
+	}
+
+	/* ------------ */
+	/* ▼全文検索窓 */
+	/* ------------ */
+	.seachbox {
+		margin: 0.75em 0 0.4em 0;
+	}
+	.seachbox form {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		vertical-align: top;
+	}
+		.searchtarget {
+			margin: 0;
+			font-size: 0.67em;
+		}
+
+
+/* ========================== */
+/* ■ページ最下部(フッタ)領域 */
+/* ========================== */
+footer {
+	margin: 1em 0px 0px 0px;	/* 外側の余白 */
+	padding: 0.5em 0px;			/* 内側の余白 */
+	background-color: green;	/* 背景色 */
+	color: white;				/* 文字色 */
+}
+
+	/* ▼管理操作リンク群 */
+	footer .control-links {
+		text-align: center;		/* 中央寄せ */
+		margin: 0.5em;			/* 外側の余白量 */
+	}
+
+	/* ▼戻るリンク */
+	.backlink {
+		text-align: center;		/* 中央寄せ */
+		margin: 0.5em;			/* 外側の余白量 */
+	}
+
+	/* ▼フッタ内リンクの装飾 */
+	footer a:link    { color: white; }  	/* 未訪問 */
+	footer a:visited { color: white; }  	/* 訪問済み */
+	footer a:hover   { color: yellow; } 	/* マウスが乗ったとき */
+	footer a:active  { color: #ccffcc; }	/* アクティブ時 */
+
+	/* Powered-by表記のデザイン */
+	.poweredby {
+		/* ※削除したり見えにくくしたりせずにお使い下さい。(見える範囲内での移動や装飾はご自由にどうぞ) */
+		margin: 2em 1em 0px 1em; font-size: 0.8em;
+	}
+
+
+/* End of file */

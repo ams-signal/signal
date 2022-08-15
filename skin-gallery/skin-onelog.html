@@ -1,0 +1,57 @@
+
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!-- ▼1投稿ごとのボックス (ギャラリー内側スキン) -->
+<!-- ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ -->
+<!-- ※この部分のHTMLに対する装飾は tegalog-gallery.css 内の『■投稿ボックス(一発言)ごとの表示』項目に記述しています。画像掲載サイズもそこで調整できます。 -->
+<div class="onelogbox" id="pos[[LOOPCOUNT]]">
+	<!-- =================== -->
+	<!-- ▼1投稿枠のヘッダ▼ -->
+	<!-- =================== -->
+	<p class="oneloghead">
+		<!-- ▽デフォルトスキンでの投稿単独ページへのリンクと投稿番号の表示 -->
+		<a href="[[PARMAURL:PURE]]">No.[[POSTID]]</a>
+		<span class="newsign">[[NEW]]</span> <!-- ←新着を示す表示 -->
+		<span class="pictcount">（画像[[PICTCOUNT]]枚）</span><!-- ←投稿内の画像枚数 -->
+		<br>
+		<!-- ▽投稿日時：表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+		<span class="postdate">[[DATE:Y/M/D(b) h:m:s]]</span>
+	</p>
+	<!-- =================== -->
+	<!-- ▼1投稿枠のメイン▼ -->
+	<!-- =================== -->
+	<div class="onelogmain">
+		<!-- ………………… -->
+		<!-- ▽画像掲載部分 -->
+		<!-- ………………… -->
+		<p class="imagebox">
+			<!-- ▽投稿本文内の1つ目の画像だけを表示 -->
+			[[ONEPICT:1]]
+		</p>
+		<!-- ………………… -->
+		<!-- ▽テキスト部分 -->
+		<!-- ………………… -->
+		<div class="onelogtext">
+			<!-- ▽原則として投稿本文の1行目の内容を最大40文字だけプレーンテキストで掲載 -->
+			[[COMMENT:TITLE:40]]
+			<!-- ▽デフォルトスキンでの投稿単独ページへ矢印記号でリンク -->
+			<a href="[[PARMAURL:PURE]]" title="No.[[POSTID]]全文を見る" class="arrowlink">»</a><br>
+			<!-- ▽投稿に含まれるハッシュタグだけを抽出して掲載（※リンク先でギャラリーモードを解除したければ「:GALLERY」を削除して下さい） -->
+			[[COMMENT:TAGS:GALLERY]]
+			<span class="categories">[[CATEGORYLINKS:GALLERY]]</span> <!-- ←所属カテゴリ群リンク（※リンク先でギャラリーモードを解除したければ「:GALLERY」を削除して下さい） -->
+		</div>
+	</div>
+	<!-- =================== -->
+	<!-- ▼1投稿枠のフッタ▼ -->
+	<!-- =================== -->
+	<p class="onelogfoot">
+		<span class="postuserid">
+			by
+			<!-- ▽ギャラリーモードを維持した状態のユーザ限定ページへのリンク -->
+			<a href="[[USERURL]]&amp;mode=gallery">
+				[[USERNAME]] <!-- ユーザ名 -->
+				([[USERID]]) <!-- ユーザID -->
+				<span class="usericon">[[USERICON]]</span> <!-- ユーザアイコン -->
+			</a>
+		</span>
+	</p>
+</div><!-- /.onelogbox -->

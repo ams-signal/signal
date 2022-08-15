@@ -1,0 +1,18 @@
+
+<!-- ▼1投稿ごとのボックス(シンプル日記内側スキン) -->
+<div class="onelogbox" id="pos[[LOOPCOUNT]]">
+	<p class="onehaad">
+		<span class="arrow">➡</span><!-- 先頭の矢印が不要ならこの行を削除 -->
+		<span class="postdate">
+			<span class="date">[[DATE:Y年G月N日(b)]]</span>
+			<span class="time">[[DATE:h時m分]]</span> <!-- ← 投稿日時：表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+		</span>
+		<span class="newsign">[[NEW]]</span> <!-- ←新着を示す表示 -->
+		<span class="categories">[[CATEGORYLINKS]]</span> <!-- ←所属カテゴリ群(リンク) -->
+		<a href="[[EDITURL]]" class="buttonlink" title="投稿No.[[POSTID]]を編集します。">&#x270e;</a>
+		<a href="[[PARMAURL]]" class="buttonlink" title="投稿No.[[POSTID]]を単独で表示します。">！</a>
+	</p>
+	<div class="comment">
+		[[COMMENT]]
+	</div>
+</div>

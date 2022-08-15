@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=[[CHARCODE]]"> <!-- ←ここ(CHARCODE)に文字コードが入ります。 -->
+	<!-- ▼ここに、状況に応じたタイトル、主タイトル、副タイトルが並んで入ります。(※表示内容は、管理画面の「設定」内の「フリースペース」ページで自由に設定できます。) -->
+	<title>[[SITUATION:TITLE]] [[FREE:TITLE:MAIN]] [[FREE:TITLE:SUB]]</title>
+	<meta name="viewport" content="initial-scale=1">
+	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]"><!-- ←ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<link type="text/css" rel="stylesheet" href="tegalog-journal.css?v360"> <!-- ←付属のCSSファイルを読み込んでいます。デザインをカスタマイズするには、このCSSファイルを編集して下さい。 -->
+	<!-- ▼ここに、状況に応じたOGP＋Twitter Cardの記述が入ります。(出力する設定なら) ※不要ならこの行自体を削除する方が動作は速くなります。 -->
+	[[OGP]]
+</head>
+<body class="[[SITUATION:CLASS]]"><!-- ←ここに現在の表示状況を示すサイン群が入ります。(状況に応じた装飾に使えます。) -->
+
+	<!-- ============================================================================================================= -->
+	<!-- お手軽マイクロブログCGI「てがろぐ」ジャーナル(日誌)スキン for Ver 3.6.0以降 ： ご自由に改変してご使用下さい。 -->
+	<!-- ============================================================================================================= -->
+	<!-- このファイルのほか、内側スキン(skin-onelog.html)とスタイルシート(tegalog-journal.css)を併せて使います。 -->
+	<!-- スキン内の挿入キーワードの書き方は、配布サイト https://www.nishishi.com/cgi/tegalog/ 内の https://www.nishishi.com/cgi/tegalog/custom/#howtocustomizeskin 等をご参照下さい。 -->
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最上部(ヘッダ)領域 -->
+	<!-- ――――――――――――― -->
+	<header>
+		<p class="description">
+			<!-- ▼ここに一行概要文が挿入されます。(※管理画面の「設定」内の「フリースペース」で設定できます。) -->
+			[[FREE:DESCRIPTION]]
+			<small class="rss">（<a href="[[RSS:URL:PURE]]">RSSフィード</a>）</small> <!-- ←ここ(RSS:URL)にRSSフィードへのURLが相対パスで入ります。 -->
+		</p>
+		<p class="control-links">
+			<a href="[[NEWPOST:URL]]">新規投稿</a> <!-- ←ここ(NEWPOST:URL)に新規投稿画面へのURLが入ります。 -->
+			<a href="[[ADMIN:URL]]">管理画面</a> <!-- ←ここ(ADMIN:URL)に管理画面へのURLが入ります。 -->
+		</p>
+	</header>
+
+	<!-- ―――――――― -->
+	<!-- ▼大外枠(メイン) -->
+	<!-- ―――――――― -->
+	<div class="mainarea">
+
+		<h1 class="pagetitle">
+			<!-- ▼ここにHOMEへ戻るリンクが挿入されます。 -->
+			<a href="[[HOME:URL]]">
+				<!-- ▼ここに主タイトルが挿入されます。 -->
+				[[FREE:TITLE:MAIN]]
+				<!-- ▼ここに副タイトルが挿入されます。 -->
+				<small class="subtitle">[[FREE:TITLE:SUB]]</small>
+			</a>
+		</h1>
+
+		<p class="modified">
+			<!-- ▼ここに最終更新日時が入ります。表記は Y=年(西暦)、y=年(西暦下2桁)、R=和暦(元号+年数)、r=和暦(年数だけ)、M=月(2桁固定)、G=月(1～2桁)、J=月(和名)、E=月(英長)、e=月(英短)、D=日(2桁固定)、N=日(1～2桁)、W=曜日(英長)、w=曜日(英短)、B=曜日(和長)、b=曜日(和短)、h=時、m=分、s=秒で取捨選択順序自由。それ以外の文字はそのまま出力。詳しい記法や例は https://www.nishishi.com/cgi/tegalog/custom/#customizeinfo-dateformat をご覧下さい。 -->
+			<span class="date">[[INFO:LASTUPDATE:Y年G月N日(b) h:m:s]]</span> 更新
+		</p>
+
+		<div class="noticebox">
+			<h2 class="noticehead">
+				<!-- ▼ここに状況に応じた見出しが挿入されます。(表示条件が限定されていない場面では何も挿入されません。) ※これを削除すると動作状況が分かりにくくなってしまいますのでご注意下さい。どこかに小さくでも表示しておくことをお勧め致します。 -->
+				<span class="situation">■[[SITUATION]]</span>
+				<!-- ▼ここに現在の表示条件での投稿総数(標準状態なら全投稿件数)が数値で入ります。 -->
+				<span class="targetposts">（ [[INFO:TARGETPOSTS]] <small>件</small> ）</span>
+			</h2>
+			<div class="noticebody">
+				<div class="freespacearea">
+					<p class="cornertitle">
+						<!-- ▼ここにフリースペース用のタイトルが挿入されます。 -->
+						■[[FREESPTITLE]]
+						<!-- ▼ここにフリースペース編集用リンクが挿入されます。 -->
+						<a href="[[FREESPACEEDIT:URL]]" class="freespaceedit">編集</a>
+					</p>
+					<div class="freespacebody">
+						<!-- ▼ここにフリースペース本文が挿入されます。(※区切り文字を使えば、別々の内容を表示する複数個のフリースペースを作ることもできます。詳しくは公式説明書 https://www.nishishi.com/cgi/tegalog/#specification-freespace をご参照下さい。) -->
+						[[FREESPACE]]
+					</div>
+				</div>
+				<div class="datepullbox">
+					<p class="cornertitle">■日付検索：</p>
+					<!-- ▼日付別ログページへのプルダウンメニューが挿入されます。(昇順/降順の選択機能付き) -->
+					[[DATEBOX:PULL]]
+				</div>
+				<div class="searcharea">
+					<p class="cornertitle">■全文検索：</p>
+					<!-- ▼ここに検索窓が挿入されます。(表示対象が限定されている場合は、限定を維持するかどうかのオプションも同時に表示されます。) -->
+					[[SEARCHBOX]]
+				</div>
+			</div>
+		</div>
+
+		<!-- ‥‥‥‥‥‥‥‥‥‥‥‥ -->
+		<!-- ▼入力フォームの表示領域 -->
+		<!-- ‥‥‥‥‥‥‥‥‥‥‥‥ -->
+		<div class="postarea">
+			<!-- ▼ここに投稿フォーム(QUICKPOST)が挿入されます。不要なら削除して下さい。(※CGIの設定で、非ログイン時にだけ見えなくすることもできます。標準設定ではログインの有無に関わらず常に表示されます。) -->
+			[[QUICKPOST]]
+		</div>
+
+		<!-- ‥‥‥‥‥‥‥‥ -->
+		<!-- ▼投稿の表示領域 -->
+		<!-- ‥‥‥‥‥‥‥‥ -->
+		<div class="tegalogArea">
+			<!-- ▼ここに投稿内容が挿入されます。(投稿1つ1つのフォーマットは「内側スキン」ファイル側に記載します。) ※これを消してしまうとCGIが動作しません。 -->
+			[[TEGALOG]]
+		</div>
+
+		<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+		<!-- ▼ページナビゲーション領域 -->
+		<!-- ‥‥‥‥‥‥‥‥‥‥‥‥‥ -->
+		<div class="pagenavi">
+			<p class="pagelinks">
+				<!-- ▼ここに前後のページへ移動するリンクが挿入されます。(※前後のページがある場合のみ／※1投稿の単独表示時には前後の投稿へ移動するリンクが挿入されますが、設定で挿入しないようにもできます。) -->
+				[[NAVI:PREVNEXT]]
+			</p>
+			<p class="pagenums">
+				<!-- ▼ここにページ番号の一覧リンクが挿入されます。(※2ページ以上ある状況でのみ) -->
+				[[NAVI:PAGELIST]]
+			</p>
+			<p class="pagehome">
+				<!-- ▼ここに初期状態ページへ戻るリンクが挿入されます。(※日付限定、ユーザ限定、ハッシュタグ限定など、「初期状態以外の状態」で表示されている場合のみ) -->
+				[[NAVI:TOPPAGE]]
+			</p>
+		</div><!-- /.pagenavi -->
+
+	</div><!-- /.mainarea -->
+
+	<!-- ――――――― -->
+	<!-- ▼大外枠(サブ) -->
+	<!-- ――――――― -->
+	<div class="subarea">
+
+		<!-- ========== -->
+		<!-- 段組の構成 -->
+		<!-- ========== -->
+		<div class="columnbox">
+
+			<div class="datelistarea">
+				<p class="cornertitle">■日付一覧：</p>
+				<!-- ▼ここに日付別ログページへのテキストリンク一覧が挿入されます。 -->
+				[[DATEBOX:LIST]]
+			</div>
+
+			<div class="hashtaglistarea">
+				<p class="cornertitle">■ハッシュタグ：</p>
+				<!-- ▼ここにハッシュタグリストが挿入されます。 -->
+				[[HASHTAGLIST]]
+			</div>
+
+		</div><!-- /.columnbox -->
+		<div class="columnbox">
+
+ 			<div class="calendararea">
+				<p class="cornertitle">■カレンダー：</p>
+				<!-- ▼ここにカレンダーが挿入されます。 -->
+				[[CALENDAR]]
+
+				<div class="calendarlinks">
+					<!-- ▼ここに前後の月へ移動するリンクが挿入されます。 -->
+					<a href="[[MOVEMONTH:-1:URL]]">&laquo; 前の月</a> / <a href="[[MOVEMONTH:1:URL]]">次の月 &raquo;</a>
+				</div>
+			</div>
+
+ 			<div class="categoryarea">
+				<p class="cornertitle">■カテゴリ：</p>
+				<div class="categoryTree">
+					<!-- ▼ここにカテゴリリストがツリー形式で挿入されます。 -->
+					[[CATEGORY:TREE]]
+				</div>
+			</div>
+
+ 			<div class="latestpostarea">
+				<p class="cornertitle">■最近の投稿：</p>
+				<!-- ▼ここに新着投稿の抜粋リストが挿入されます。 -->
+				[[LATESTLIST]]
+			</div>
+
+ 			<div class="complexsearcharea">
+				<p class="cornertitle">■複合全文検索：</p>
+				<!-- ▼ここに複合検索フォームが挿入されます。 -->
+				[[SEARCHBOX:COMPLEX:UDHCO]]	<!-- 掲載要素と順序(取捨選択順序自由)： U=投稿者、D=投稿年月、H=ハッシュタグ、C=カテゴリ、O=出力順序 -->
+			</div>
+
+		</div><!-- /.columnbox -->
+
+		<!-- ============== -->
+		<!-- その他用の下段 -->
+		<!-- ============== -->
+		<p class="otherarea">
+			<!-- ▼ここに投稿1つをランダムに表示するURLが入ります。 -->
+			<a href="[[RANDOM:URL]]">ランダムに1件を見る</a>
+			/
+			<!-- ▼ここにギャラリーページへのURLが相対パスで入ります。 -->
+			<a href="[[GALLERY:URL]]">ギャラリーモードで表示</a>
+			/
+			<!-- ▼ここにサイトマップページへのURLが相対パスで入ります。 -->
+			<a href="[[SITEMAP:URL]]">サイトマップモードで表示</a>
+			/
+			<!-- ▼ここに現在の表示順を逆順にするURLが入り、逆順にする順序名称が表示されます。 -->
+			<a href="[[REVERSE:URL]]">[[REVERSE:NAME]]で表示する</a>
+		</p>
+
+	</div><!-- /.subarea -->
+
+	<!-- ■JournalSkin■ -->
+
+	<!-- ――――――――――――― -->
+	<!-- ▼ページ最下部(フッタ)領域 -->
+	<!-- ――――――――――――― -->
+	<footer>
+		<p>
+			<a href="[[HOME:URL]]">[[FREE:TITLE:MAIN]]TOP</a><!-- ここ(HOME:URL)にCGIトップページへのURLが入り、指定のタイトルでリンクになります。(タイトルは、管理画面の「フリースペース」で設定できます。) -->
+			/
+			<a href="[[NEWPOST:URL]]">新規投稿</a><!-- ここ(NEWPOST:URL)に新規投稿画面へのURLが入ります。 -->
+			/
+			<a href="[[ADMIN:URL]]">管理画面</a><!-- ここ(ADMIN:URL)に管理画面へのURLが入ります。 -->
+		</p>
+		<p class="backlink">[[FREE:HOMELINK]]</p><!-- ここにウェブサイトのHOMEへ戻るリンクが挿入されます。(戻り先は、管理画面の「フリースペース」で設定できます。) -->
+
+		<!-- ▼ここにPoweredby表記が挿入されます。この記述は必須です。削除したり見えにくくしたりせずにお使い下さい。(移動や装飾はご自由にどうぞ) -->
+		<p class="poweredby">[[VERSION]].</p>
+	</footer>
+
+	<!-- ――――――――――――― -->
+	<!-- ▼遅延読み込みスクリプト群 -->
+	<!-- ――――――――――――― -->
+	<!-- ▼ここに（Lightboxが必要な状況でのみ）jQuery＋Lightboxスクリプトが読み込まれます。※JavaScriptとCSSがCDN経由で読み込まれます。※jQueryだけが不要なら「:JQ」を削除して下さい。 -->
+	<!-- ※Lightbox自体が不要ならこの行自体を削除して下さい。画像を表示しないならLightboxは確実に不要です。※表示される投稿文中に、Lightbox用の属性が1つも登場しない場面では何も挿入されません。) -->
+	[[JS:LIGHTBOX:JQ]]
+
+</body>
+</html>
